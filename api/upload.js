@@ -1,13 +1,4 @@
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
-
-const s3 = new S3Client({
-  region: 'auto',
-  endpoint: `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-  credentials: {
-    accessKeyId: process.env.CLOUDFLARE_R2_ACCESS_KEY_ID,
-    secretAccessKey: process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY,
-  },
-});
+import crypto from 'crypto';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -22,30 +13,36 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Base64 image data:image/* required' });
   }
 
+  const cloud = process.env.CLOUDINARY_CLOUD_NAME;
+  const key = process.env.CLOUDINARY_API_KEY;
+  const secret = process.env.CLOUDINARY_API_SECRET;
+  if (!cloud || !key || !secret) {
+    return res.status(500).json({ error: 'Cloudinary env missing (CLOUDINARY_CLOUD_NAME / API_KEY / API_SECRET)' });
+  }
+
   try {
-    const matches = image.match(/^data:(image\/[a-zA-Z0-9.+]+);base64,/);
-    const contentType = matches ? matches[1] : 'image/jpeg';
-    const ext = contentType === 'image/png' ? 'png' : 'jpg';
+    const timestamp = Math.floor(Date.now() / 1000);
+    const folder = 'photobooth';
+    const toSign = `folder=${folder}&timestamp=${timestamp}${secret}`;
+    const signature = crypto.createHash('sha1').update(toSign).digest('hex');
 
-    const buffer = Buffer.from(image.split(',')[1], 'base64');
-    const key = `photobooth/${Date.now()}.${ext}`;
+    const form = new URLSearchParams();
+    form.append('file', image);
+    form.append('api_key', key);
+    form.append('timestamp', String(timestamp));
+    form.append('folder', folder);
+    form.append('signature', signature);
 
-    await s3.send(new PutObjectCommand({
-      Bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME,
-      Key: key,
-      Body: buffer,
-      ContentType: contentType,
-    }));
-
-    let cleanBaseUrl = (process.env.CLOUDFLARE_R2_PUBLIC_URL || '').trim().replace(/\/+$/, '');
-    if (cleanBaseUrl && !/^https?:\/\//i.test(cleanBaseUrl)) {
-      cleanBaseUrl = `https://${cleanBaseUrl}`;
+    const r = await fetch(`https://api.cloudinary.com/v1_1/${cloud}/image/upload`, { method: 'POST', body: form });
+    const data = await r.json();
+    if (!r.ok) {
+      return res.status(500).json({ error: 'Upload gagal', details: data?.error?.message || 'cloudinary error' });
     }
-    const publicUrl = `${cleanBaseUrl}/${key}`;
 
+    const publicUrl = data.secure_url;
     return res.status(200).json({ success: true, url: publicUrl, publicUrl });
   } catch (err) {
-    console.error('R2 upload error:', err);
+    console.error('Cloudinary upload error:', err);
     return res.status(500).json({ error: 'Upload gagal', details: err.message });
   }
 }
