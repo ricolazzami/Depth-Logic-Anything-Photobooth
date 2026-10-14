@@ -49,11 +49,20 @@ export async function getEstimator(onProgress) {
     return depthPipeline;
   }
   depthLoading = true;
-  if (onProgress) onProgress('Downloading Depth Anything (~110MB)...');
-  depthPipeline = await pipeline('depth-estimation', 'Xenova/depth-anything-small-hf', {
-    quantized: true,
-    progress_callback: d => { if (onProgress && d.status==='progress') onProgress(`Model ${Math.round(d.progress||0)}%`); }
-  });
+  if (onProgress) onProgress('Initializing WebGPU Depth Engine...');
+  try {
+    depthPipeline = await pipeline('depth-estimation', 'Xenova/depth-anything-small-hf', {
+      device: 'webgpu',
+      dtype: 'fp16',
+      progress_callback: d => { if (onProgress && d.status==='progress') onProgress(`Model ${Math.round(d.progress||0)}%`); }
+    });
+  } catch (e) {
+    console.warn('WebGPU/FP16 failed, falling back to WASM/Quantized', e);
+    depthPipeline = await pipeline('depth-estimation', 'Xenova/depth-anything-small-hf', {
+      quantized: true,
+      progress_callback: d => { if (onProgress && d.status==='progress') onProgress(`Model ${Math.round(d.progress||0)}%`); }
+    });
+  }
   depthLoading = false;
   if (onProgress) onProgress('Model ready');
   return depthPipeline;
@@ -62,18 +71,20 @@ export async function getEstimator(onProgress) {
 export async function estimateDepth(imageSrc, onProgress) {
   try {
     const pipe = await getEstimator(onProgress);
-    if (onProgress) onProgress('Resizing input for ML...');
+    if (onProgress) onProgress('Optimizing input frame...');
+    // ponytail: iPad Gen 11 performance ceiling at 384px for <500ms inference
     const resizedSrc = await resizeForInference(imageSrc, 384);
-    if (onProgress) onProgress('Running depth estimation...');
+    
+    if (onProgress) onProgress('Computing depth (WebGPU)...');
     const out = await pipe(resizedSrc);
     const t = out.predicted_depth;
     const data = t.data;
     const [h,w] = [t.dims[1], t.dims[2]] || [DEPTH_H, DEPTH_W];
+    
     let min=Infinity,max=-Infinity;
     for (let v of data){ if(v<min)min=v; if(v>max)max=v; }
     const range = max-min || 1;
 
-    // Raw depth map canvas
     const rawCanvas = document.createElement('canvas');
     rawCanvas.width = w; rawCanvas.height = h;
     const rawCtx = rawCanvas.getContext('2d');
@@ -84,18 +95,17 @@ export async function estimateDepth(imageSrc, onProgress) {
     }
     rawCtx.putImageData(imgData,0,0);
 
-    // Apply 4px blur filter for smooth 3D displacement
+    if (depthCanvas) { /* clean up reference */ }
     depthCanvas = document.createElement('canvas');
     depthCanvas.width = w; depthCanvas.height = h;
     depthCtx = depthCanvas.getContext('2d');
     depthCtx.filter = 'blur(4px)';
     depthCtx.drawImage(rawCanvas, 0, 0);
 
-    if (onProgress) onProgress('Depth map ready');
+    if (onProgress) onProgress('Rendering 3D...');
     return depthCanvas;
   } catch(e){
     console.warn('ML depth failed, fallback luma', e);
-    if (onProgress) onProgress('ML failed — using luma fallback');
     return lumaDepth(imageSrc);
   }
 }
@@ -173,15 +183,38 @@ function animate(){ rafId=requestAnimationFrame(animate); if(renderer&&scene&&ca
 export async function applyDepth(colorSrc, depthSrcCanvas, depthMm){
   currentImageURL = colorSrc;
   const loader=new THREE.TextureLoader();
-  texColor=await new Promise((res,rej)=>loader.load(colorSrc, res, undefined, rej));
-  texColor.colorSpace=THREE.SRGBColorSpace;
-  material.map=texColor; material.needsUpdate=true;
-
-  const dTex=new THREE.CanvasTexture(depthSrcCanvas);
-  dTex.colorSpace=THREE.NoGrayscale ? undefined : THREE.NoColorSpace;
-  texDepth=dTex; material.displacementMap=dTex; material.displacementScale=Math.min((depthMm||40)/100, MAX_DISPLACE);
-  material.needsUpdate=true;
+  
+  if (texColor) { texColor.dispose(); }
+  texColor = await new Promise((res,rej)=>loader.load(colorSrc, res, undefined, rej));
+  texColor.colorSpace = THREE.SRGBColorSpace;
+  material.map = texColor; 
+  
+  if (texDepth) { texDepth.dispose(); }
+  const dTex = new THREE.CanvasTexture(depthSrcCanvas);
+  dTex.colorSpace = THREE.NoColorSpace;
+  texDepth = dTex; 
+  material.displacementMap = dTex; 
+  material.displacementScale = Math.min((depthMm||40)/100, MAX_DISPLACE);
+  
+  material.needsUpdate = true;
   geometry.computeVertexNormals();
+}
+
+export function destroy(){ 
+  if(rafId) cancelAnimationFrame(rafId); 
+  if(renderer) {
+    renderer.dispose();
+    if(renderer.domElement && renderer.domElement.parentNode) {
+      renderer.domElement.parentNode.removeChild(renderer.domElement);
+    }
+  }
+  if(geometry) geometry.dispose();
+  if(material) {
+    if(material.map) material.map.dispose();
+    if(material.displacementMap) material.displacementMap.dispose();
+    material.dispose();
+  }
+  scene = null; camera = null; renderer = null; mesh = null; geometry = null; material = null;
 }
 
 export function setDepthScale(mm){ if(material) material.displacementScale=Math.min(mm/100, MAX_DISPLACE); }
@@ -189,4 +222,3 @@ export function setRoughness(v){ if(material) material.roughness=1 - v/100*0.6; 
 export function setWireframe(b){ if(material) material.wireframe=!!b; }
 export function snapshot(){ if(!renderer) return null; return renderer.domElement.toDataURL('image/jpeg',0.92); }
 export function getDepthCanvas(){ return depthCanvas; }
-export function destroy(){ if(rafId) cancelAnimationFrame(rafId); if(renderer) renderer.dispose(); }
