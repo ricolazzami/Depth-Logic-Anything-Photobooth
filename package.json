@@ -1,0 +1,16 @@
+{
+  "name": "photobooth-pwa",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "iPad Gen 11 Fullscreen Photobooth Progressive Web App",
+  "main": "api/upload.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.500.0",
+    "@xenova/transformers": "^2.17.2",
+    "three": "^0.186.1"
+  }
+}

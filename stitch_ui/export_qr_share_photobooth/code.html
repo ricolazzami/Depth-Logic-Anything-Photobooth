@@ -1,0 +1,217 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"><meta content="web_standard" name="shell-type"><title>SpatialSculpt Photobooth &amp; 3D Depth Kiosk</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=JetBrains+Mono:wght@500;600&amp;family=Space+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}@keyframes microGlitch{0%,94%,100%{transform:translate(0,0);filter:none;}95%{transform:translate(-2px,1px);filter:drop-shadow(-2px 0 #ff0055) drop-shadow(2px 0 #00ffff);}97%{transform:translate(2px,-1px);filter:drop-shadow(2px 0 #ff0055) drop-shadow(-2px 0 #00ffff);}98%{transform:translate(-1px,-1px);filter:none;}}@keyframes chromaticAberration{0%,94%,100%{clip-path:inset(0 0 0 0);opacity:0;}95%{clip-path:inset(20% 0 65% 0);opacity:0.8;transform:translateX(-3px);}97%{clip-path:inset(60% 0 15% 0);opacity:0.9;transform:translateX(3px);}98%{clip-path:inset(40% 0 45% 0);opacity:0.5;transform:translateX(-1px);}}.periodic-glitch-active{animation:microGlitch 2s infinite ease-in-out;}.glitch-slice-overlay{pointer-events:none;position:absolute;inset:0;animation:chromaticAberration 2s infinite linear;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error-container": "#93000a", "background": "#fcf9f4", "tertiary-fixed": "#e5e2e1", "secondary-fixed": "#d6e3ff", "primary-fixed": "#62ff95", "tertiary-container": "#b8b6b6", "primary": "#006d34", "on-secondary": "#ffffff", "error-container": "#ffdad6", "secondary-container": "#0073e0", "surface-bright": "#fcf9f4", "on-background": "#1c1c19", "surface-container-high": "#ebe8e3", "surface-variant": "#e5e2dd", "surface-tint": "#006d34", "surface-container-highest": "#e5e2dd", "on-secondary-container": "#fefcff", "outline-variant": "#bbcbba", "surface-container-low": "#f6f3ee", "on-primary-fixed": "#00210b", "inverse-on-surface": "#f3f0eb", "surface-container": "#f0ede9", "surface-container-lowest": "#ffffff", "on-secondary-fixed-variant": "#00468d", "inverse-surface": "#31302d", "secondary": "#005ab3", "on-primary-fixed-variant": "#005226", "inverse-primary": "#2fe378", "on-surface": "#1c1c19", "primary-fixed-dim": "#2fe378", "error": "#ba1a1a", "primary-container": "#00d26a", "on-tertiary-container": "#484747", "on-tertiary-fixed-variant": "#474746", "tertiary": "#5f5e5e", "on-secondary-fixed": "#001b3e", "on-primary-container": "#005426", "outline": "#6c7b6c", "secondary-fixed-dim": "#aac7ff", "on-surface-variant": "#3c4a3d", "on-error": "#ffffff", "surface": "#fcf9f4", "surface-dim": "#dcdad5", "tertiary-fixed-dim": "#c8c6c5", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#1b1b1b", "on-primary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "space-xl": "2.25rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "margin": "1.5rem", "gutter": "1.25rem", "space-lg": "1.5rem" }, "fontFamily": { "label-md": [ "JetBrains Mono" ], "display-lg-mobile": [ "Bricolage Grotesque" ], "headline-md": [ "Bricolage Grotesque" ], "label-sm": [ "JetBrains Mono" ], "headline-lg": [ "Bricolage Grotesque" ], "body-lg": [ "Space Grotesk" ], "body-md": [ "Space Grotesk" ], "headline-sm": [ "Space Grotesk" ], "display-lg": [ "Bricolage Grotesque" ], "label-lg": [ "JetBrains Mono" ] }, "fontSize": { "label-md": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" } ], "display-lg-mobile": [ "36px", { "lineHeight": "42px", "letterSpacing": "-0.01em", "fontWeight": "800" } ], "headline-md": [ "24px", { "lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "700" } ], "label-sm": [ "9px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "500" } ], "headline-lg": [ "32px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "body-lg": [ "16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "500" } ], "body-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-sm": [ "18px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" } ], "display-lg": [ "48px", { "lineHeight": "54px", "letterSpacing": "-0.02em", "fontWeight": "800" } ], "label-lg": [ "13px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background text-on-surface font-body-md text-body-md select-none touch-none antialiased"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 w-full px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm font-label-md text-label-md tracking-wider uppercase"><span class="inline-block w-2.5 h-2.5 rounded-full bg-primary-container animate-ping"></span><span class="text-primary font-bold">KIOSK ACTIVE</span><span class="text-outline-variant">//</span><span class="text-on-surface-variant font-label-sm text-label-sm">IPAD GEN 11 · 4:3 120HZ</span></div></div><nav class="flex items-center gap-space-xs p-1 rounded-xl bg-surface-container" data-active-classes="bg-primary-container text-on-primary-container font-headline-sm"><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" data-path="photobooth-capture" href="#">Capture</a><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" data-path="depth-sculptor" href="#">3D Sculptor</a><a aria-current="page" class="px-space-md py-space-xs rounded-lg transition-colors bg-primary-container text-on-primary-container font-headline-sm" data-path="gallery-export" href="#">Gallery &amp; Print</a></nav><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md"><span class="text-primary font-bold">LiDAR</span><span class="text-outline-variant">|</span><span class="">43.0mm</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative w-full pt-14 bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full px-margin py-space-md max-w-[1400px] mx-auto min-h-[calc(100vh-3.5rem)] flex flex-col justify-between">
+<!-- Top Telemetry Ribbon & Session Status -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs bg-surface-container-high px-space-md py-space-xs rounded-xl shadow-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container animate-ping"></span>
+<span class="font-label-md text-label-md uppercase text-on-surface tracking-wider">JOB #8842-OK</span>
+<span class="text-outline-variant font-label-md">|</span>
+<span class="font-label-md text-label-md text-primary font-bold">BATCH COMPLETE</span>
+</div>
+<div class="hidden md:flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span class="">SCAN DURATION: 18.4s</span>
+<span class="">·</span>
+<span class="">4 POSED FRAMES</span>
+<span class="">·</span>
+<span class="">STL / OBJ READY</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-xl hover:bg-surface-container-high transition-colors shadow-sm font-label-md text-label-md text-on-surface" id="themeToggleBtn">
+<span class="material-symbols-outlined text-primary text-[18px]">palette</span>
+<span class="">TOGGLE SKIN</span>
+<span class="font-label-sm text-label-sm text-outline px-1.5 py-0.5 rounded bg-surface-container-highest">DOODLE / CAD</span>
+</button>
+<button class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center hover:bg-surface-container-high text-on-surface transition-transform active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">print</span>
+</button>
+</div>
+</div>
+<!-- Main iPad Landscape Split Cards Container -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg flex-grow items-stretch my-auto">
+<!-- LEFT CARD: Photostrip & 3D Bas-Relief Preview (Col 1-7) -->
+<div class="lg:col-span-7 flex flex-col justify-between bg-surface-container rounded-3xl p-space-lg shadow-xl relative overflow-hidden group">
+<!-- Subtle Decorative CAD / Grid Underlay -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#1c1c19_1px,transparent_1px)] [background-size:16px_16px]"></div>
+<!-- Header Strip Inside Left Card -->
+<div class="flex items-start justify-between relative z-10"><div><div class="flex items-center gap-space-xs font-label-md text-label-md text-primary font-bold"><span class="material-symbols-outlined text-[16px]">compare_arrows</span><span class="">DUAL ARTIFACT PIPELINE // OUTPUT A &amp; B</span></div><div class="font-headline-md text-headline-md text-on-surface mt-0.5">Output A (Classic 2D) vs Output B (Depth Logic 3D)</div></div><div class="flex items-center gap-1 bg-surface-container-highest p-1 rounded-xl"><span class="font-label-sm text-label-sm px-2.5 py-1 rounded-lg bg-surface text-on-surface-variant font-semibold shadow-sm">Output A: 2D Strip</span><span class="font-label-sm text-label-sm px-2.5 py-1 rounded-lg bg-primary text-on-primary font-bold shadow-sm flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary-fixed animate-ping"></span>Output B: Depth 3D</span></div></div>
+<!-- Central Display: The Photostrip with Glitch Pulse and Hand-Drawn / CAD Fusion -->
+<div class="relative my-space-md flex flex-col md:flex-row items-center justify-center gap-space-lg z-10"><div class="w-full grid grid-cols-1 md:grid-cols-2 gap-space-md items-start"><div class="bg-surface-container-lowest/90 p-space-sm rounded-2xl shadow-md border border-outline-variant/30 flex flex-col gap-space-xs"><div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high"><div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-outline"></span><span class="font-label-sm text-label-sm font-bold text-on-surface uppercase tracking-wider">OUTPUT A: CLASSIC PHOTOSTRIP</span></div><span class="font-label-sm text-label-sm bg-surface-container-high px-2 py-0.5 rounded text-outline font-semibold">Standard 2D</span></div><div class="relative bg-surface-container-lowest p-2 rounded-xl shadow-inner flex flex-col items-center mx-auto max-w-[170px] w-full transform -rotate-1 hover:rotate-0 transition-transform"><div class="w-full flex items-center justify-between px-1 pb-1 font-label-sm text-label-sm text-outline"><span class="font-bold text-[10px] text-on-surface">ARCADE//2D</span><span class="text-outline text-[9px]">4-CUT POSE</span></div><div class="w-full aspect-square rounded-lg overflow-hidden bg-surface-container mb-1 shadow-sm"><img class="w-full h-full object-cover" data-alt="Classic 2D arcade booth photo laughing with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCmFuiLLOl7Sv7kGM0lSHtLhB8VIWdKCXHDxa4Jf-FEn0Ymj5KzlLeWVYXY1XcN2tu4LBo1cbNCATBQz875ZwRB28Z9GFXIiyxgsyo0Z8hfP4zOM1-FP7MYwabLoD59DeyPN1c4qQTIzjY_JgIvcOtXZXMlLV9TIaMZ8LNuCqTdFZY_SHOpLLy063HsiE2fw2zsRTopdOZozmYcSq_anWkv8iA8GrTJ6cSoJ7LCHMaH3reGiA3TxrJ"><div class="text-right text-[8px] font-label-sm text-outline pr-1">01</div></div><div class="w-full aspect-square rounded-lg overflow-hidden bg-surface-container mb-1 shadow-sm"><img class="w-full h-full object-cover" data-alt="Classic 2D portrait playful peace gesture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWrE2uahvAkl6JOgjwrSI2SK2wAjE6dOkfFBEOlNLj-h56fGtDShP8xcaMf6jgEx4yJXrQroSsKmKwoAa6-PCX3hBuLUjPS2hYy-b4xBmCtXHAK3xZ-2-jvGwIsXY890doAfl3w31-sek0FdIQk-8V5xD1edQKg1c7a4j1Nh0zpUdsvU942o8lWmTmNZ0FN3UeeQztXfXGN59w4oXwAjDkgeQwXnCCff5dg1Mt-L-C67oNVa2iYCk9"><div class="text-right text-[8px] font-label-sm text-outline pr-1">02</div></div><div class="w-full aspect-square rounded-lg overflow-hidden bg-surface-container mb-1 shadow-sm"><img class="w-full h-full object-cover" data-alt="Classic candid smiling booth portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4TJfZXce_c9MKR98Vp7SzjGVzUitRwkRnb_k5yQWQ4BWyLcfaGKXHJSG1gS8Hgyt385s53cokDrHmM928sV0rdONsWUzYbzhQKk3orG27F4Rq2Fo40l0o_k4fl4wFtuxGWzsPLaJ_kiyZROb35zm2O0rw4uPT3vEMXNYOS_mm5UZTEvB9HPHxXQJq2DBjCnJBG-GlQi-_4SGktLxG3_lRZPOse-0XncIqbtaRoSNh8E2Bl4dHXEd-"><div class="text-right text-[8px] font-label-sm text-outline pr-1">03</div></div><div class="w-full aspect-square rounded-lg overflow-hidden bg-surface-container shadow-sm"><img class="w-full h-full object-cover" data-alt="Classic retro booth close-up pose" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWrE2uahvAkl6JOgjwrSI2SK2wAjE6dOkfFBEOlNLj-h56fGtDShP8xcaMf6jgEx4yJXrQroSsKmKwoAa6-PCX3hBuLUjPS2hYy-b4xBmCtXHAK3xZ-2-jvGwIsXY890doAfl3w31-sek0FdIQk-8V5xD1edQKg1c7a4j1Nh0zpUdsvU942o8lWmTmNZ0FN3UeeQztXfXGN59w4oXwAjDkgeQwXnCCff5dg1Mt-L-C67oNVa2iYCk9"><div class="text-right text-[8px] font-label-sm text-outline pr-1">04</div></div><div class="w-full pt-1 text-center font-label-sm text-[9px] text-outline font-bold tracking-widest uppercase">FLAT GLOSSY FILMSTRIP</div></div><div class="bg-surface-container-high/50 p-space-xs rounded-xl flex flex-col gap-0.5 text-on-surface-variant font-label-sm text-label-sm"><div class="flex justify-between"><span class="text-outline">Processing</span><span class="font-bold text-on-surface">Instant Zero Mesh</span></div><div class="flex justify-between"><span class="text-outline">Print Tech</span><span class="">Thermal Glossy Dye-Sub</span></div><div class="flex justify-between"><span class="text-outline">Physics</span><span class="">Flat Paper Sheet (2D)</span></div></div></div><div class="bg-surface-container-lowest p-space-sm rounded-2xl shadow-xl border-2 border-primary-container relative overflow-hidden flex flex-col gap-space-xs"><div class="glitch-slice-overlay bg-primary/10 mix-blend-screen"></div><div class="flex items-center justify-between pb-space-xs border-b border-primary/20 relative z-10"><div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-primary-container animate-pulse"></span><span class="font-label-sm text-label-sm font-bold text-primary uppercase tracking-wider">OUTPUT B: DEPTH LOGIC ANYTHING</span></div><span class="font-label-sm text-label-sm bg-primary-container text-on-primary-container px-2 py-0.5 rounded font-bold uppercase">3D Relief</span></div><div class="relative periodic-glitch-active bg-surface-container rounded-xl p-2 shadow-inner flex flex-col gap-space-xs relative z-10"><div class="w-full aspect-square rounded-xl overflow-hidden bg-surface-container-high relative shadow-md"><img class="w-full h-full object-cover" data-alt="Monochromatic 3D depth clay sculpture relief mesh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHkj8TDfVQcyoLRSMaKC7b2lKlzHzHEWFfb7lhbNyxYpI90BrxeDsoSk9SR_NxmSvZg5F9XO4ZEcvOo4mA-StmjxdC6nHqm84gbAFr1s-oTDrNXjs_ORvFa5L-MOhJHKHFQ1qbA1QtuHHL6aN6OuafIm_ZfDLw-X-AyiNec70Xfwiw7ni8um5eq2J35ThW76mr4whwPB4EX7evPWeRRE0PBSJC37NU3lh_QooIAcSSyvIsMof8DI9V"><div class="absolute top-1 left-1 bg-primary text-on-primary rounded px-1.5 py-0.5 text-[8px] font-label-sm font-bold flex items-center gap-0.5 shadow"><span class="material-symbols-outlined text-[10px]">view_in_ar</span><span class="">SPATIAL MESH</span></div><div class="absolute bottom-1 right-1 bg-surface/90 backdrop-blur-sm rounded px-1 text-[8px] font-label-sm text-primary font-bold">43.0mm Z-RELIEF</div></div><div class="bg-surface-container-lowest p-space-xs rounded-lg flex flex-col gap-1"><div class="flex justify-between items-center font-label-sm text-label-sm"><span class="text-primary font-bold flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px]">bar_chart</span><span class="">LiDAR Relief Histogram</span></span><span class="text-on-surface font-bold">0mm → 43mm Peak</span></div><div class="w-full h-8 bg-surface-container rounded p-1 flex items-end gap-1"><div class="bg-primary/20 h-[30%] w-full rounded-sm"></div><div class="bg-primary/30 h-[45%] w-full rounded-sm"></div><div class="bg-primary/50 h-[85%] w-full rounded-sm"></div><div class="bg-primary h-[100%] w-full rounded-sm"></div><div class="bg-primary/80 h-[90%] w-full rounded-sm"></div><div class="bg-primary/60 h-[60%] w-full rounded-sm"></div><div class="bg-primary/40 h-[40%] w-full rounded-sm"></div><div class="bg-primary/20 h-[25%] w-full rounded-sm"></div></div><div class="flex justify-between font-label-sm text-[9px] text-outline"><span class="">Plane 0mm (Back)</span><span class="">Peak: 1.2M Vertices</span></div></div></div><div class="bg-primary/10 p-space-xs rounded-xl flex flex-col gap-0.5 text-on-surface font-label-sm text-label-sm relative z-10"><div class="flex justify-between"><span class="text-primary font-semibold">Computation</span><span class="font-bold text-primary">Neural LiDAR &amp; STL Mesh</span></div><div class="flex justify-between"><span class="text-outline">Production</span><span class="">3D Clay / CNC Bas-Relief</span></div><div class="flex justify-between"><span class="text-outline">Formats</span><span class="font-bold">.OBJ · .STL · 16-bit EXR</span></div></div></div></div></div>
+<!-- Bottom Controls / Sub Actions -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-sm relative z-10">
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="">POLAROID GLOSS COATED · 300 DPI</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-space-xs rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[16px]">replay</span>
+<span class="">REPRINT COPIES</span>
+</button>
+</div>
+</div>
+</div>
+<!-- RIGHT CARD: Scannable Cloud Delivery & Start New Session (Col 8-12) -->
+<div class="lg:col-span-5 flex flex-col justify-between bg-surface-container-lowest rounded-3xl p-space-lg shadow-xl relative overflow-hidden">
+<!-- Top Cloud Badge & Storage Provider -->
+<div class="flex items-center justify-between mb-space-md"><h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Save Output A &amp; B to Google Drive</h2><p class="font-body-lg text-body-lg text-on-surface-variant mt-space-xs leading-relaxed">Dual-artifact bundle ready: Output A (2D Glossy Filmstrip) + Output B (Depth Logic 3D Neural Relief &amp; Mesh). Scan below to download both instantly.</p></div>
+<!-- Headline & Instructions -->
+<div class="mb-space-md"><h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Save Output A &amp; B to Google Drive</h2><p class="font-body-lg text-body-lg text-on-surface-variant mt-space-xs leading-relaxed">Dual-artifact bundle ready: Output A (2D Glossy Filmstrip) + Output B (Depth Logic 3D Neural Relief &amp; Mesh). Scan below to download both instantly.</p></div>
+<!-- High-Contrast Scannable QR Code Hero Card -->
+<div class="my-auto flex flex-col items-center justify-center p-space-lg bg-surface rounded-2xl shadow-md border-0 relative">
+<!-- Outer Corner Targeting Reticles for Kiosk Scanner Polish -->
+<div class="relative p-space-sm bg-surface-container-lowest rounded-2xl shadow-xl flex items-center justify-center">
+<!-- SVG Accurate Scannable-Style High Contrast QR Vector -->
+<svg class="w-48 h-48 md:w-56 md:h-56 text-on-surface" fill="currentColor" viewBox="0 0 100 100">
+<!-- Corner Finder 1 (Top-Left) -->
+<rect fill="none" height="28" rx="4" stroke="currentColor" stroke-width="5" width="28" x="5" y="5"></rect>
+<rect fill="currentColor" height="16" rx="2" width="16" x="11" y="11"></rect>
+<!-- Corner Finder 2 (Top-Right) -->
+<rect fill="none" height="28" rx="4" stroke="currentColor" stroke-width="5" width="28" x="67" y="5"></rect>
+<rect fill="currentColor" height="16" rx="2" width="16" x="73" y="11"></rect>
+<!-- Corner Finder 3 (Bottom-Left) -->
+<rect fill="none" height="28" rx="4" stroke="currentColor" stroke-width="5" width="28" x="5" y="67"></rect>
+<rect fill="currentColor" height="16" rx="2" width="16" x="11" y="73"></rect>
+<!-- Data Pixels & Matrix Blocks -->
+<rect height="5" width="5" x="38" y="6"></rect>
+<rect height="5" width="6" x="48" y="6"></rect>
+<rect height="6" width="5" x="58" y="10"></rect>
+<rect height="5" width="8" x="38" y="16"></rect>
+<rect height="6" width="6" x="50" y="16"></rect>
+<rect height="7" width="5" x="40" y="26"></rect>
+<rect height="6" width="7" x="52" y="26"></rect>
+<rect height="6" width="6" x="6" y="38"></rect>
+<rect height="6" width="6" x="16" y="38"></rect>
+<rect height="6" width="6" x="26" y="38"></rect>
+<rect height="8" width="8" x="36" y="38"></rect>
+<rect height="8" width="8" x="48" y="38"></rect>
+<rect height="8" width="8" x="60" y="38"></rect>
+<rect height="6" width="6" x="72" y="38"></rect>
+<rect height="6" width="8" x="84" y="38"></rect>
+<rect height="6" width="8" x="6" y="48"></rect>
+<rect height="6" width="7" x="18" y="48"></rect>
+<rect height="8" width="5" x="29" y="48"></rect>
+<rect height="6" width="6" x="42" y="50"></rect>
+<rect height="6" width="8" x="54" y="50"></rect>
+<rect height="8" width="6" x="68" y="48"></rect>
+<rect height="6" width="12" x="80" y="48"></rect>
+<rect height="5" width="6" x="6" y="58"></rect>
+<rect height="5" width="8" x="16" y="58"></rect>
+<rect height="5" width="5" x="28" y="60"></rect>
+<rect height="6" width="6" x="38" y="62"></rect>
+<rect height="6" width="8" x="50" y="62"></rect>
+<rect height="7" width="6" x="62" y="60"></rect>
+<rect height="6" width="6" x="76" y="58"></rect>
+<rect height="5" width="6" x="86" y="60"></rect>
+<rect height="6" width="6" x="38" y="74"></rect>
+<rect height="6" width="7" x="48" y="74"></rect>
+<rect height="6" width="6" x="60" y="74"></rect>
+<rect height="8" width="6" x="70" y="72"></rect>
+<rect height="6" width="8" x="82" y="74"></rect>
+<rect height="8" width="8" x="38" y="84"></rect>
+<rect height="8" width="6" x="52" y="84"></rect>
+<rect height="8" width="8" x="64" y="84"></rect>
+<rect height="6" width="6" x="76" y="86"></rect>
+<rect height="8" width="6" x="86" y="84"></rect>
+<!-- Center Google Drive Badge on QR -->
+<circle cx="50" cy="50" fill="#ffffff" r="10"></circle>
+<path d="M47 46 h6 v8 h-6 z" fill="#006d34"></path>
+</svg>
+<!-- Active Scan Laser Animated Overlay -->
+<div class="absolute inset-x-2 top-2 h-0.5 bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-75 animate-pulse"></div>
+</div>
+<div class="mt-space-sm flex items-center gap-space-sm text-center">
+<span class="inline-block w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-label-md text-label-md text-on-surface font-semibold tracking-wider">DIRECT MOBILE WEBDAV/HTTPS LINK</span>
+</div>
+<!-- Quick Bundle Payload Details -->
+<div class="w-full grid grid-cols-3 gap-2 mt-space-sm text-center"><div class="bg-surface-container p-space-xs rounded-lg"><div class="font-label-sm text-label-sm text-outline">OUTPUT A (2D)</div><div class="font-label-md text-label-md text-on-surface font-bold">4K PNG FILMSTRIP</div></div><div class="bg-surface-container p-space-xs rounded-lg"><div class="font-label-sm text-label-sm text-primary font-bold">OUTPUT B (3D)</div><div class="font-label-md text-label-md text-primary font-bold">OBJ + STL + EXR</div></div><div class="bg-surface-container p-space-xs rounded-lg"><div class="font-label-sm text-label-sm text-outline">STORAGE VAULT</div><div class="font-label-md text-label-md text-on-surface font-bold">48H SYNCED</div></div></div>
+</div>
+<!-- Bottom Session Reset Arcade Touch Action -->
+<div class="pt-space-md flex flex-col gap-space-xs">
+<!-- Big 72px Target Arcane Style Touch Action Button -->
+<button class="w-full h-18 py-space-md px-space-lg rounded-2xl bg-primary-container hover:bg-primary text-on-primary-container hover:text-on-primary font-headline-md text-headline-md transition-all active:scale-[0.98] shadow-lg flex items-center justify-center gap-space-sm group" id="startNewSessionBtn">
+<span class="material-symbols-outlined text-[32px] group-hover:rotate-180 transition-transform duration-500">add_circle</span>
+<span class="font-bold tracking-tight uppercase">START NEW SESSION</span>
+</button>
+<div class="flex items-center justify-between px-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="">KIOSK AUTO-RESET IN <strong class="text-primary font-bold" id="countdownTimer">32</strong>s</span>
+<span class="">DATA PRIVACY CLEARED LOCALLY</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Secondary Info & Footnote Strip -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-xs pt-space-sm border-0 font-label-sm text-label-sm text-on-surface-variant">
+<div class="flex items-center gap-space-md">
+<span class="">SESSION ID: #SPATIAL-8842</span>
+<span class="">·</span>
+<span class="">CAMERA A: SONY IMX 48MP</span>
+<span class="">·</span>
+<span class="">DEPTH ENGINE: NEURAL LIDAR V2.4</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="inline-block w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-label-md text-label-md text-on-surface">PRINTER STATUS: IDLE READY</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Kiosk Session Countdown & Interactive Micro-actions
+  (function() {
+    let timeLeft = 45;
+    const countdownEl = document.getElementById('countdownTimer');
+    const glitchEl = document.getElementById('glitchStrip');
+    const startBtn = document.getElementById('startNewSessionBtn');
+    const themeBtn = document.getElementById('themeToggleBtn');
+
+    // 1. Reset Countdown Timer loop
+    setInterval(() => {
+      if (timeLeft > 1) {
+        timeLeft--;
+        if (countdownEl) countdownEl.textContent = timeLeft;
+      } else {
+        timeLeft = 45;
+        if (countdownEl) countdownEl.textContent = timeLeft;
+      }
+    }, 1000);
+
+    // 2. Start New Session Button Handlers
+    if (startBtn) {
+      startBtn.addEventListener('click', () => {
+        startBtn.classList.add('scale-95');
+        setTimeout(() => {
+          startBtn.classList.remove('scale-95');
+          // Dispatch navigation event or notify parent kiosk shell
+          const navCapture = document.querySelector('nav a[data-path="photobooth-capture"]');
+          if (navCapture) {
+            navCapture.click();
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }, 150);
+      });
+    }
+
+    // 3. Theme Toggle Skin Action (Simulate Doodle sketchbook vs Dark CAD mesh)
+    let isCADSkin = false;
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        isCADSkin = !isCADSkin;
+        if (isCADSkin) {
+          glitchEl.classList.add('rotate-0');
+          glitchEl.classList.remove('-rotate-1');
+        } else {
+          glitchEl.classList.add('-rotate-1');
+        }
+      });
+    }
+  })();
+</script></main><footer class="w-full bg-surface-container-low py-space-md"><div class="w-full px-margin flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-label-sm text-label-sm"><div class="flex items-center gap-space-sm"><span class="">STUDIO / DOODLE DUAL PIPELINE</span><span class="">·</span><span class="">2360 × 1640 PX NATIVE RETINA</span><span class="">·</span><span class="">GLITCH PULSE: 2000MS</span></div><div class="font-label-md text-label-md text-outline">ARCADE DEPTH LAB © 2025</div></div></footer>
+
+
+
+</body></html>

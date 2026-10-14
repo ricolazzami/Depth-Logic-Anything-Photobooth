@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/><meta content="web_blank" name="shell-type"/><title>SpatialSculpt Kiosk Initialization</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=JetBrains+Mono:wght@500;600&amp;family=Space+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}@keyframes microGlitch{0%,94%,100%{transform:translate(0,0);filter:none;}95%{transform:translate(-2px,1px);filter:drop-shadow(-2px 0 #ff0055) drop-shadow(2px 0 #00ffff);}97%{transform:translate(2px,-1px);filter:drop-shadow(2px 0 #ff0055) drop-shadow(-2px 0 #00ffff);}98%{transform:translate(-1px,-1px);filter:none;}}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error-container": "#93000a", "background": "#fcf9f4", "tertiary-fixed": "#e5e2e1", "secondary-fixed": "#d6e3ff", "primary-fixed": "#62ff95", "tertiary-container": "#b8b6b6", "primary": "#006d34", "on-secondary": "#ffffff", "error-container": "#ffdad6", "secondary-container": "#0073e0", "surface-bright": "#fcf9f4", "on-background": "#1c1c19", "surface-container-high": "#ebe8e3", "surface-variant": "#e5e2dd", "surface-tint": "#006d34", "surface-container-highest": "#e5e2dd", "on-secondary-container": "#fefcff", "outline-variant": "#bbcbba", "surface-container-low": "#f6f3ee", "on-primary-fixed": "#00210b", "inverse-on-surface": "#f3f0eb", "surface-container": "#f0ede9", "surface-container-lowest": "#ffffff", "on-secondary-fixed-variant": "#00468d", "inverse-surface": "#31302d", "secondary": "#005ab3", "on-primary-fixed-variant": "#005226", "inverse-primary": "#2fe378", "on-surface": "#1c1c19", "primary-fixed-dim": "#2fe378", "error": "#ba1a1a", "primary-container": "#00d26a", "on-tertiary-container": "#484747", "on-tertiary-fixed-variant": "#474746", "tertiary": "#5f5e5e", "on-secondary-fixed": "#001b3e", "on-primary-container": "#005426", "outline": "#6c7b6c", "secondary-fixed-dim": "#aac7ff", "on-surface-variant": "#3c4a3d", "on-error": "#ffffff", "surface": "#fcf9f4", "surface-dim": "#dcdad5", "tertiary-fixed-dim": "#c8c6c5", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#1b1b1b", "on-primary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "space-xl": "2.25rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "margin": "1.5rem", "gutter": "1.25rem", "space-lg": "1.5rem" }, "fontFamily": { "label-md": [ "JetBrains Mono" ], "display-lg-mobile": [ "Bricolage Grotesque" ], "headline-md": [ "Bricolage Grotesque" ], "label-sm": [ "JetBrains Mono" ], "headline-lg": [ "Bricolage Grotesque" ], "body-lg": [ "Space Grotesk" ], "body-md": [ "Space Grotesk" ], "headline-sm": [ "Space Grotesk" ], "display-lg": [ "Bricolage Grotesque" ], "label-lg": [ "JetBrains Mono" ] }, "fontSize": { "label-md": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" } ], "display-lg-mobile": [ "36px", { "lineHeight": "42px", "letterSpacing": "-0.01em", "fontWeight": "800" } ], "headline-md": [ "24px", { "lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "700" } ], "label-sm": [ "9px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "500" } ], "headline-lg": [ "32px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "body-lg": [ "Body-Lg", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "500" } ], "body-md": [ "Space Grotesk", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-sm": [ "Space Grotesk", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" } ], "display-lg": [ "Bricolage Grotesque", { "lineHeight": "54px", "letterSpacing": "-0.02em", "fontWeight": "800" } ], "label-lg": [ "JetBrains Mono", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background text-on-surface font-body-md text-body-md select-none touch-none antialiased min-h-screen flex items-center justify-center"><main class="w-full flex-1 flex items-center justify-center p-margin"><div class="flex flex-col w-full max-w-[1180px] mx-auto select-none">
+<!-- Top Telemetry & Spatial Kiosk Bar -->
+<div class="w-full flex items-center justify-between px-space-md py-space-xs mb-space-sm bg-surface-container rounded-lg shadow-sm">
+<div class="flex items-center gap-space-sm">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface">SYS.READY // PWA KIOSK v2.4</span>
+<span class="text-tertiary font-label-sm text-label-sm hidden sm:inline">| 2360×1640 MESH ENGINE</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs px-space-sm py-1 bg-surface rounded-full shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">photo_camera</span>
+<span class="font-label-sm text-label-sm text-on-surface">LiDAR + RGB ACTIVE</span>
+</div>
+<div class="font-label-md text-label-md text-secondary">
+<span id="kiosk-time">10:42 AM</span>
+</div>
+</div>
+</div>
+<!-- Main Hand-Drawn Booth Illustration Canvas -->
+<div class="relative w-full bg-surface rounded-xl shadow-xl p-space-md md:p-space-lg overflow-hidden flex flex-col items-center">
+<!-- Glitch / Chromatic Aberration Container -->
+<div class="w-full flex flex-col items-center transition-transform duration-75" id="glitch-anchor">
+<!-- Top Marquee Sign: "PHOTOBOOTH" with Hand-drawn Sketch Styling -->
+<div class="relative mb-space-sm px-space-xl py-space-sm bg-surface-container-lowest rounded-xl shadow-md transform -rotate-1 flex flex-col items-center group cursor-pointer">
+<!-- Mechanical Roof Mounting Struts -->
+<div class="absolute -bottom-3 left-12 w-2 h-3 bg-on-background"></div>
+<div class="absolute -bottom-3 right-12 w-2 h-3 bg-on-background"></div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[28px]">local_see</span>
+<h1 class="font-display-lg text-display-lg tracking-tight uppercase text-on-surface font-extrabold select-none">
+            PHOTOBOOTH
+          </h1>
+<span class="px-space-xs py-0.5 bg-primary-container text-on-primary-container font-label-sm text-label-sm rounded ml-space-xs font-bold uppercase">
+            3D SPATIAL
+          </span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary tracking-widest uppercase -mt-1">
+          HAND-DRAWN ZINE • NEURAL RELIEF STUDIO
+        </span>
+</div>
+<!-- Booth Architecture Wrapper (Split Face) -->
+<div class="relative w-full max-w-[1020px] bg-surface-container-low rounded-xl shadow-lg p-space-md flex flex-col lg:flex-row gap-space-md items-stretch">
+<!-- Left Wing: Featured Strips Gallery & Mechanical Coin/Token Receiver -->
+<div class="w-full lg:w-[32%] bg-surface-container rounded-lg p-space-md flex flex-col justify-between shadow-sm relative overflow-hidden">
+<!-- Section Title & Tape Sticker -->
+<div class="relative">
+<div class="inline-block bg-surface-container-highest px-space-sm py-1 rounded shadow-sm transform -rotate-2 mb-space-sm">
+<span class="font-label-md text-label-md font-semibold text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">push_pin</span>
+                FEATURED STRIPS
+              </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-tight">
+              Fresh snapshots from the community moleskine archives.
+            </p>
+</div>
+<!-- Featured Photo Strips Mockup -->
+<div class="relative my-space-md flex justify-center gap-space-sm">
+<!-- Photostrip 1 -->
+<div class="w-24 bg-surface-container-lowest p-1.5 rounded shadow-md transform -rotate-3 hover:rotate-0 transition-transform">
+<div class="flex flex-col gap-1.5">
+<div class="w-full h-16 bg-surface-variant rounded overflow-hidden">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="Monochrome expressive photobooth portrait of two friends laughing, high contrast hand-drawn ink grain texture, minimalist sketchbook editorial feel, rich blacks and clean ivory whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnFdjWGe9O4h7PUUfSVzJtPiCU52fca-J-iuSjrxa_vTLcaT5psRjJAGh7nyvm21oEdm2Y82e3uNISDDkW1yVMW6HFtdtTXc7Vuz5917_l3xmDm1r44W9_tevHGTrwQuWJlwQ0sF7ydklC0JSruxEXsImHLtXgPrABsWKTuqzqRei0uMbMkPFyQi0X3sg59Xr7j0neHr6msy6oWjgX2rv0zPr58X6uEY28zSN2HFQHHuDy5bhNz0Ee"/>
+</div>
+<div class="w-full h-16 bg-surface-variant rounded overflow-hidden">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="Goofy pose in retro photobooth, hand on chin, sketched marker heart scribbles drawn on cheek, high contrast film grain aesthetic, clean graphic lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgTHDaVTIr3StAilZE7jFiqXrK1350UDkkgk6lmeg-e2m0wg6z7SW6P4dE5S41jdDDiCSGiytpcV97WmuB0w5PX9VLCT_9YWDSgbfXdEI-vkdlm7phB1vzeS-Qnt-LtE25sqoXLIqa6qXMfn5Eee--h8mn0CevYk53GgIg8bBtktErXjZcrX4Rxezv-KVBbO15G7r20iHtyty0TbTCjkdC6NqvM1GUXHq5dvP5TIIWEjytKjxime6M"/>
+</div>
+<div class="w-full h-16 bg-surface-variant rounded overflow-hidden">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="Close up face smiling with vintage rimless glasses, playful wink, captured in vintage photobooth lighting, classic black and white contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIsJMjF0qMCD_eMgoHhMrfrD0B07ITwrMdTQLqkyb1eHdrFLILH-wUOu1Uo-lE4D0c0mU_6G3ITUB_dkAXACOE41Ha5nI29lQgXFz1gCO0BrOyrk39veIBdhcYivNEJXKipd73zdMhio_YK2h0jcHA7SygyI8GNZ4uaUTQH_t0oLEaOoZHl1U1dcVZ6hNbLbsQ0ulsiy5oseDc81hI0j9p7F3xOHt_rFdvPAEHYl46sHfQwMtyEqs4"/>
+</div>
+</div>
+<div class="text-center pt-2 pb-0.5">
+<span class="font-label-sm text-label-sm text-tertiary">#0482 OCT14</span>
+</div>
+</div>
+<!-- Photostrip 2 (3D Depth Wireframe preview strip) -->
+<div class="w-24 bg-surface-container-lowest p-1.5 rounded shadow-md transform rotate-2 hover:rotate-0 transition-transform">
+<div class="flex flex-col gap-1.5">
+<div class="w-full h-16 bg-surface-variant rounded overflow-hidden">
+<img class="w-full h-full object-cover hue-rotate-90" data-alt="Cybernetic 3D topographical depth mesh sculpt of a human face, electric green and cyan laser point cloud relief, dark studio background, futuristic LiDAR aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDypOTHWoY4GYXsCXeHZ983MVzWC8dkVxxEg4kICx7sEqqAvKaGpPHjtZzea57ut8pMfrhojOEOlNw4npDIzU_9Q_x43cVMxYmyJOREV6FncYLsmb0tGQXD5e1gJoQfSS_j9HptrnL3uloE6aY1aVtvg3qlVC8AtLTE9rNyqW4T2x-M1hTBBlPgmOu9Oc2yI6lElhGo0UY86uTiQyjJegIVj5No2mf_m1B19yfzsyzojPWu3q5zSErY"/>
+</div>
+<div class="w-full h-16 bg-surface-variant rounded overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Detailed clay 3D bas-relief bust emerging from textured plane, dramatic architectural studio side-lighting, clean parametric mesh lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnmYwejMPtBqrD9qGVQ1g44WDj4AyXAS8WAsxWkGGCMUG2ATHgGZbyiZQFmFvaOKKeykT3DdAW7f7832QnzCUF9rgBQ9dpYYVG0pyS74oh_im0u2eBdfJ2dbim8BM2KENPLqEnJxfqW95z4NqGV9oc704K6mUPo-q-Qiy6WV0iybOpStN4K_jZj3bL3ieqli38Sq8O_sk4qPLVaXFUvOlBBifSy9gw9BaI8528vqDqhbFvE5mHQdsh"/>
+</div>
+<div class="w-full h-16 bg-surface-variant rounded overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Artistic 3D extruded portrait relief with neon topographic contour lines, spatial computing depth map visualization, sharp tactile edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUsIbhzZljJWcWVts7wr_Ar660Dvz8CopRy4C6ttFOIJTZuK5AX35XI2zEopg-MUNR_4-1tWaNXzjqhYCmAuQ7Fuwhepuc-Hop4CE8SegCbEdS57MsbU7RnqmoXd2szExywBfNqGOxnK1YFppKSSkLSBMZl7ZZTzeUmyDdYy1wfn_ooJTt23KqEUZ26QLZZylx-9zpa4Vekj2Ejlb-ZjC94Wqcw1VQ2_tKfCVzp9mAUpJtwNXqbRNn"/>
+</div>
+</div>
+<div class="text-center pt-2 pb-0.5">
+<span class="font-label-sm text-label-sm text-secondary font-semibold">SPATIAL-3D</span>
+</div>
+</div>
+</div>
+<!-- Hand-Drawn Arrow & Note -->
+<div class="flex items-center gap-space-xs text-on-surface-variant pl-space-xs">
+<span class="material-symbols-outlined text-[20px] transform rotate-45 text-primary">draw</span>
+<span class="font-body-md text-body-md italic font-medium">real-time prints &amp; mesh files</span>
+</div>
+<!-- Mechanical Coin / Token Slot Widget -->
+<div class="mt-space-md p-space-sm bg-surface-container-high rounded-lg shadow-inner flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[22px]">toll</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold uppercase">NO TOKEN NEEDED</span>
+<span class="font-label-sm text-label-sm text-tertiary">TAP A DOOR TO ENTER</span>
+</div>
+</div>
+<div class="w-3 h-10 bg-on-background rounded-full shadow-inner flex items-center justify-center">
+<div class="w-1 h-6 bg-surface-container-lowest rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Right Wing: Two Interactive Entrance Doors (Doodle Classic vs 3D Spatial) -->
+<div class="flex-1 flex flex-col md:flex-row gap-space-md">
+<!-- Door 1: Classic Photostrip (Doodle Retro) -->
+<button class="flex-1 bg-surface-container-lowest hover:bg-surface-bright active:scale-[0.98] transition-all duration-150 rounded-xl p-space-lg shadow-md hover:shadow-xl flex flex-col justify-between text-left group relative overflow-hidden" id="door-classic">
+<!-- Accent Top Ribbon -->
+<div class="w-full flex items-center justify-between pb-space-sm">
+<span class="px-space-sm py-1 bg-primary-fixed text-on-primary-fixed font-label-md text-label-md rounded font-bold uppercase tracking-wider">
+                MODE A
+              </span>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</div>
+</div>
+<!-- Door Visual & Curtain Sketch Graphic -->
+<div class="my-space-md flex flex-col items-center justify-center py-space-lg bg-surface-container-low rounded-lg shadow-inner relative">
+<!-- Fabric curtain fold doodles (Inline SVG for authentic sketchbook feel) -->
+<svg class="w-24 h-32 text-on-surface" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 100 130">
+<!-- Outer doorway frame -->
+<rect fill="transparent" height="120" rx="4" width="90" x="5" y="5"></rect>
+<!-- Pleated curtains -->
+<path d="M 15 5 Q 18 40, 12 80 T 16 125"></path>
+<path d="M 28 5 Q 32 45, 26 85 T 30 125"></path>
+<path d="M 42 5 Q 46 50, 40 90 T 44 125"></path>
+<path d="M 58 5 Q 54 45, 60 85 T 56 125"></path>
+<path d="M 72 5 Q 68 40, 74 80 T 70 125"></path>
+<path d="M 85 5 Q 82 45, 88 85 T 84 125"></path>
+<!-- Stool in booth -->
+<ellipse cx="50" cy="98" fill="currentColor" fill-opacity="0.1" rx="14" ry="4"></ellipse>
+<line stroke-width="3" x1="50" x2="50" y1="98" y2="120"></line>
+<ellipse cx="50" cy="120" rx="10" ry="3"></ellipse>
+</svg>
+<!-- Floating badge over curtain -->
+<div class="mt-space-sm px-space-md py-1.5 bg-surface-container-lowest rounded-full shadow-md flex items-center gap-space-xs transform group-hover:-translate-y-0.5 transition-transform">
+<span class="material-symbols-outlined text-primary text-[18px]">brush</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">RETRO SKETCH</span>
+</div>
+</div>
+<!-- Title & Specs -->
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase font-bold tracking-tight mb-1">
+                CLASSIC PHOTOSTRIP
+              </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-sm">
+                4 Rapid shots with tactile doodle borders, ink stamps, marker overlays, and vintage thermal paper exports.
+              </p>
+<!-- Features Pills -->
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-2 py-0.5 bg-surface-container rounded font-label-sm text-label-sm text-on-surface-variant">4 SHOTS</span>
+<span class="px-2 py-0.5 bg-surface-container rounded font-label-sm text-label-sm text-on-surface-variant">DOODLE FRAMES</span>
+<span class="px-2 py-0.5 bg-surface-container rounded font-label-sm text-label-sm text-on-surface-variant">COLOR / B&amp;W</span>
+</div>
+</div>
+<!-- Arcade Button Action Pill -->
+<div class="mt-space-md w-full py-space-sm bg-primary-container text-on-primary-container rounded-lg font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-space-xs shadow-md group-hover:shadow-lg transition-shadow">
+<span>ENTER BOOTH</span>
+<span class="material-symbols-outlined text-[20px]">login</span>
+</div>
+</button>
+<!-- Door 2: 3D Depth Sculpture (Spatial Studio) -->
+<button class="flex-1 bg-inverse-surface text-inverse-on-surface hover:bg-on-background active:scale-[0.98] transition-all duration-150 rounded-xl p-space-lg shadow-md hover:shadow-xl flex flex-col justify-between text-left group relative overflow-hidden" id="door-spatial">
+<!-- Accent Top Ribbon -->
+<div class="w-full flex items-center justify-between pb-space-sm">
+<span class="px-space-sm py-1 bg-secondary text-on-secondary font-label-md text-label-md rounded font-bold uppercase tracking-wider shadow-sm">
+                MODE B • NEURAL
+              </span>
+<div class="w-8 h-8 rounded-full bg-tertiary flex items-center justify-center text-inverse-on-surface group-hover:bg-secondary-container group-hover:text-on-secondary-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">view_in_ar</span>
+</div>
+</div>
+<!-- 3D Viewport Cyber Isometric Graphic -->
+<div class="my-space-md flex flex-col items-center justify-center py-space-lg bg-surface-container-lowest/5 rounded-lg shadow-inner relative overflow-hidden">
+<!-- Holographic Grid Background Wireframe SVG -->
+<svg class="w-28 h-32 text-secondary-fixed opacity-90" fill="none" stroke="currentColor" viewbox="0 0 120 130">
+<!-- Isometric Ground Grid -->
+<path d="M 10 90 L 60 115 L 110 90 L 60 65 Z" stroke-dasharray="2 2" stroke-width="1.2"></path>
+<path d="M 22 84 L 60 102 L 98 84" opacity="0.6" stroke-width="1"></path>
+<path d="M 35 78 L 60 90 L 85 78" opacity="0.4" stroke-width="1"></path>
+<!-- 3D Head Mesh Polyline Nodes -->
+<polygon fill="rgba(0,115,224,0.15)" points="60,20 40,40 50,75 70,75 80,40" stroke="currentColor" stroke-width="2"></polygon>
+<polyline points="40,40 60,50 80,40" stroke-width="1.5"></polyline>
+<polyline points="60,20 60,50 60,75" stroke-width="1.5"></polyline>
+<circle cx="60" cy="20" fill="#62FF95" r="3"></circle>
+<circle cx="40" cy="40" fill="#AAC7FF" r="3"></circle>
+<circle cx="80" cy="40" fill="#AAC7FF" r="3"></circle>
+<circle cx="50" cy="75" fill="#62FF95" r="3"></circle>
+<circle cx="70" cy="75" fill="#62FF95" r="3"></circle>
+<circle cx="60" cy="50" fill="#00D26A" r="3"></circle>
+<!-- Laser Scan Line -->
+<line stroke="#00D26A" stroke-dasharray="4 2" stroke-width="1.5" x1="15" x2="105" y1="48" y2="48">
+<animate attributename="y1" dur="3s" repeatcount="indefinite" values="25;75;25"></animate>
+<animate attributename="y2" dur="3s" repeatcount="indefinite" values="25;75;25"></animate>
+</line>
+</svg>
+<!-- Floating Depth Telemetry Badge -->
+<div class="mt-space-sm px-space-md py-1.5 bg-inverse-surface/80 rounded-full shadow-lg flex items-center gap-space-xs transform group-hover:-translate-y-0.5 transition-transform">
+<span class="inline-block w-2 h-2 rounded-full bg-primary-fixed"></span>
+<span class="font-label-md text-label-md font-mono text-secondary-fixed">1,221,290 TRIANGLES</span>
+</div>
+</div>
+<!-- Title & Specs -->
+<div>
+<h2 class="font-headline-lg text-headline-lg text-inverse-on-surface uppercase font-bold tracking-tight mb-1">
+                3D DEPTH SCULPTURE
+              </h2>
+<p class="font-body-md text-body-md text-tertiary-fixed mb-space-sm">
+                1 Shot LiDAR &amp; neural depth synthesis. Generate interactive tactile bas-reliefs, OBJ/STL 3D print assets.
+              </p>
+<!-- Features Pills -->
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-2 py-0.5 bg-tertiary text-inverse-on-surface rounded font-label-sm text-label-sm">1-CLICK SCAN</span>
+<span class="px-2 py-0.5 bg-tertiary text-inverse-on-surface rounded font-label-sm text-label-sm">REAL-TIME MESH</span>
+<span class="px-2 py-0.5 bg-tertiary text-inverse-on-surface rounded font-label-sm text-label-sm">STL / GLTF EXPORT</span>
+</div>
+</div>
+<!-- Studio Action Pill -->
+<div class="mt-space-md w-full py-space-sm bg-secondary text-on-secondary rounded-lg font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-space-xs shadow-md group-hover:shadow-lg transition-shadow">
+<span>INITIALIZE STUDIO</span>
+<span class="material-symbols-outlined text-[20px]">view_in_ar</span>
+</div>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Mascot & Kiosk Footer Bar -->
+<div class="w-full max-w-[1020px] mt-space-md pt-space-xs flex flex-col sm:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-label-md text-label-md">
+<!-- Social / Credits Label -->
+<div class="flex items-center gap-space-md">
+<span>ENGINEERED BY <strong class="text-on-surface">@VISARCHIVESS</strong> • SPATIALSCULPT PWA</span>
+<span class="hidden md:inline text-tertiary">• IPAD LANDSCAPE KIOSK (4:3)</span>
+</div>
+<!-- Quick Action Buttons: Camera Test, Audio On/Off, Language -->
+<div class="flex items-center gap-space-sm">
+<button class="px-space-sm py-1.5 bg-surface-container rounded-lg shadow-sm hover:bg-surface-container-high transition-colors flex items-center gap-1" id="btn-sound">
+<span class="material-symbols-outlined text-[16px]">volume_up</span>
+<span class="font-label-sm text-label-sm font-semibold">SFX ON</span>
+</button>
+<button class="px-space-sm py-1.5 bg-surface-container rounded-lg shadow-sm hover:bg-surface-container-high transition-colors flex items-center gap-1" id="btn-fullscreen">
+<span class="material-symbols-outlined text-[16px]">fullscreen</span>
+<span class="font-label-sm text-label-sm font-semibold">KIOSK LOCK</span>
+</button>
+<button class="px-space-sm py-1.5 bg-surface-container-highest rounded-lg shadow-sm hover:bg-surface-container transition-colors flex items-center gap-1" id="btn-glitch-test">
+<span class="material-symbols-outlined text-[16px] text-primary">bolt</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">PULSE TEST</span>
+</button>
+</div>
+</div>
+<!-- Pixel Cat Mascot Sticker (Fixed bottom right tactile mascot) -->
+<div class="absolute bottom-3 right-6 cursor-pointer transform hover:scale-110 active:rotate-6 transition-transform group" id="cat-mascot">
+<!-- Speech bubble popping up on hover/touch -->
+<div class="absolute -top-10 -left-16 bg-surface-container-lowest px-2.5 py-1 rounded shadow-md border-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">MEOW! PICK A DOOR!</span>
+</div>
+<!-- Authentic Pixel Cat SVG (clean vector rendering of classic 8-bit companion) -->
+<svg class="w-16 h-16 drop-shadow-md" shape-rendering="crispEdges" viewbox="0 0 32 32">
+<!-- Body outline & fill -->
+<rect fill="#D97706" height="6" width="4" x="8" y="8"></rect>
+<rect fill="#D97706" height="6" width="4" x="20" y="8"></rect>
+<rect fill="#F59E0B" height="14" width="20" x="6" y="12"></rect>
+<rect fill="#D97706" height="12" width="24" x="4" y="16"></rect>
+<!-- Eyes & Nose -->
+<rect fill="#1C1C19" height="2" width="2" x="10" y="16"></rect>
+<rect fill="#1C1C19" height="2" width="2" x="20" y="16"></rect>
+<rect fill="#78350F" height="1" width="2" x="15" y="19"></rect>
+<!-- Whiskers -->
+<rect fill="#1C1C19" height="1" width="4" x="4" y="19"></rect>
+<rect fill="#1C1C19" height="1" width="4" x="24" y="19"></rect>
+<!-- Paws & Belly patch -->
+<rect fill="#FEF3C7" height="6" width="8" x="12" y="24"></rect>
+<rect fill="#B45309" height="3" width="5" x="6" y="27"></rect>
+<rect fill="#B45309" height="3" width="5" x="21" y="27"></rect>
+<!-- Tail -->
+<rect fill="#B45309" height="7" width="3" x="26" y="20"></rect>
+</svg>
+</div>
+</div>
+</div>
+<script>
+  // Real-time clock update for Kiosk header
+  function updateKioskTime() {
+    const el = document.getElementById('kiosk-time');
+    if (!el) return;
+    const now = new Date();
+    el.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+  updateKioskTime();
+  setInterval(updateKioskTime, 10000);
+
+  // Periodic Micro-Glitch Chromatic Aberration Trigger (fires every 2.0s for 120ms)
+  const glitchTarget = document.getElementById('glitch-anchor');
+  function triggerMicroGlitch() {
+    if (!glitchTarget) return;
+    glitchTarget.style.animation = 'microGlitch 140ms ease-in-out';
+    setTimeout(() => {
+      glitchTarget.style.animation = 'none';
+    }, 150);
+  }
+  setInterval(triggerMicroGlitch, 2200);
+
+  // Sound toggle button state
+  let soundActive = true;
+  const soundBtn = document.getElementById('btn-sound');
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      soundActive = !soundActive;
+      const icon = soundBtn.querySelector('.material-symbols-outlined');
+      const text = soundBtn.querySelector('span:last-child');
+      if (soundActive) {
+        icon.textContent = 'volume_up';
+        text.textContent = 'SFX ON';
+      } else {
+        icon.textContent = 'volume_off';
+        text.textContent = 'SFX MUTED';
+      }
+    });
+  }
+
+  // Glitch pulse test button
+  const pulseBtn = document.getElementById('btn-glitch-test');
+  if (pulseBtn) {
+    pulseBtn.addEventListener('click', () => {
+      triggerMicroGlitch();
+    });
+  }
+
+  // Fullscreen trigger for iPad kiosk exhibition
+  const fsBtn = document.getElementById('btn-fullscreen');
+  if (fsBtn) {
+    fsBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+  }
+
+  // Door Navigation Interactions with Feedback
+  const classicDoor = document.getElementById('door-classic');
+  const spatialDoor = document.getElementById('door-spatial');
+
+  if (classicDoor) {
+    classicDoor.addEventListener('click', () => {
+      triggerMicroGlitch();
+      // Visual press flash
+      classicDoor.classList.add('bg-primary-fixed');
+      setTimeout(() => {
+        classicDoor.classList.remove('bg-primary-fixed');
+        // Kiosk routing feedback
+        alert('ENTERING CLASSIC PHOTOSTRIP BOOTH // Initializing 4-Shot Camera Grid...');
+      }, 160);
+    });
+  }
+
+  if (spatialDoor) {
+    spatialDoor.addEventListener('click', () => {
+      triggerMicroGlitch();
+      spatialDoor.classList.add('opacity-90');
+      setTimeout(() => {
+        spatialDoor.classList.remove('opacity-90');
+        // Kiosk routing feedback
+        alert('INITIALIZING 3D DEPTH SCULPTURE STUDIO // Calibrating Neural LiDAR Mesh Pipeline...');
+      }, 160);
+    });
+  }
+
+  // Interactive Mascot interaction
+  const cat = document.getElementById('cat-mascot');
+  if (cat) {
+    cat.addEventListener('click', () => {
+      cat.style.transform = 'scale(1.25) rotate(-12deg)';
+      setTimeout(() => {
+        cat.style.transform = 'scale(1) rotate(0deg)';
+      }, 200);
+    });
+  }
+</script></main></body></html>

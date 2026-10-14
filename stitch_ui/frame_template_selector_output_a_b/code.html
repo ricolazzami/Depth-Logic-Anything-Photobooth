@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/><meta content="web_standard" name="shell-type"/><title>SpatialSculpt Photobooth &amp; 3D Depth Kiosk</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=JetBrains+Mono:wght@500;600&amp;family=Space+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}@keyframes microGlitch{0%,94%,100%{transform:translate(0,0);filter:none;}95%{transform:translate(-2px,1px);filter:drop-shadow(-2px 0 #ff0055) drop-shadow(2px 0 #00ffff);}97%{transform:translate(2px,-1px);filter:drop-shadow(2px 0 #ff0055) drop-shadow(-2px 0 #00ffff);}98%{transform:translate(-1px,-1px);filter:none;}}@keyframes chromaticAberration{0%,94%,100%{clip-path:inset(0 0 0 0);opacity:0;}95%{clip-path:inset(20% 0 65% 0);opacity:0.8;transform:translateX(-3px);}97%{clip-path:inset(60% 0 15% 0);opacity:0.9;transform:translateX(3px);}98%{clip-path:inset(40% 0 45% 0);opacity:0.5;transform:translateX(-1px);}}.periodic-glitch-active{animation:microGlitch 2s infinite ease-in-out;}.glitch-slice-overlay{pointer-events:none;position:absolute;inset:0;animation:chromaticAberration 2s infinite linear;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error-container": "#93000a", "background": "#fcf9f4", "tertiary-fixed": "#e5e2e1", "secondary-fixed": "#d6e3ff", "primary-fixed": "#62ff95", "tertiary-container": "#b8b6b6", "primary": "#006d34", "on-secondary": "#ffffff", "error-container": "#ffdad6", "secondary-container": "#0073e0", "surface-bright": "#fcf9f4", "on-background": "#1c1c19", "surface-container-high": "#ebe8e3", "surface-variant": "#e5e2dd", "surface-tint": "#006d34", "surface-container-highest": "#e5e2dd", "on-secondary-container": "#fefcff", "outline-variant": "#bbcbba", "surface-container-low": "#f6f3ee", "on-primary-fixed": "#00210b", "inverse-on-surface": "#f3f0eb", "surface-container": "#f0ede9", "surface-container-lowest": "#ffffff", "on-secondary-fixed-variant": "#00468d", "inverse-surface": "#31302d", "secondary": "#005ab3", "on-primary-fixed-variant": "#005226", "inverse-primary": "#2fe378", "on-surface": "#1c1c19", "primary-fixed-dim": "#2fe378", "error": "#ba1a1a", "primary-container": "#00d26a", "on-tertiary-container": "#484747", "on-tertiary-fixed-variant": "#474746", "tertiary": "#5f5e5e", "on-secondary-fixed": "#001b3e", "on-primary-container": "#005426", "outline": "#6c7b6c", "secondary-fixed-dim": "#aac7ff", "on-surface-variant": "#3c4a3d", "on-error": "#ffffff", "surface": "#fcf9f4", "surface-dim": "#dcdad5", "tertiary-fixed-dim": "#c8c6c5", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#1b1b1b", "on-primary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "space-xl": "2.25rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "margin": "1.5rem", "gutter": "1.25rem", "space-lg": "1.5rem" }, "fontFamily": { "label-md": [ "JetBrains Mono" ], "display-lg-mobile": [ "Bricolage Grotesque" ], "headline-md": [ "Bricolage Grotesque" ], "label-sm": [ "JetBrains Mono" ], "headline-lg": [ "Bricolage Grotesque" ], "body-lg": [ "Space Grotesk" ], "body-md": [ "Space Grotesk" ], "headline-sm": [ "Space Grotesk" ], "display-lg": [ "Bricolage Grotesque" ], "label-lg": [ "JetBrains Mono" ] }, "fontSize": { "label-md": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" } ], "display-lg-mobile": [ "36px", { "lineHeight": "42px", "letterSpacing": "-0.01em", "fontWeight": "800" } ], "headline-md": [ "24px", { "lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "700" } ], "label-sm": [ "9px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "500" } ], "headline-lg": [ "32px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "body-lg": [ "16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "500" } ], "body-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-sm": [ "18px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" } ], "display-lg": [ "48px", { "lineHeight": "54px", "letterSpacing": "-0.02em", "fontWeight": "800" } ], "label-lg": [ "13px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background text-on-surface font-body-md text-body-md select-none touch-none antialiased"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 w-full px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm font-label-md text-label-md tracking-wider uppercase"><span class="inline-block w-2.5 h-2.5 rounded-full bg-primary-container animate-ping"></span><span class="text-primary font-bold">KIOSK ACTIVE</span><span class="text-outline-variant">//</span><span class="text-on-surface-variant font-label-sm text-label-sm">IPAD GEN 11 · 4:3 120HZ</span></div></div><nav class="flex items-center gap-space-xs p-1 rounded-xl bg-surface-container" data-active-classes="bg-primary-container text-on-primary-container font-headline-sm"><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" data-path="photobooth-capture" href="#">Capture</a><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" data-path="depth-sculptor" href="#">3D Sculptor</a><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" data-path="gallery-export" href="#">Gallery &amp; Print</a></nav><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md"><span class="text-primary font-bold">LiDAR</span><span class="text-outline-variant">|</span><span class="">43.0mm</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative w-full pt-14 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Progress & Pipeline Step Indicator -->
+<div class="w-full px-margin py-space-sm bg-surface-container border-b-0 flex flex-col md:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md overflow-x-auto w-full md:w-auto">
+<span class="opacity-60 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+        1. Capture
+      </span>
+<span class="text-outline-variant px-1">→</span>
+<span class="opacity-60 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+        2. Depth Polish
+      </span>
+<span class="text-outline-variant px-1">→</span>
+<div class="flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-primary-container text-on-primary-container font-bold shadow-sm">
+<span class="inline-block w-2 h-2 rounded-full bg-on-primary-container animate-pulse"></span>
+        3. Choose Frame (Active)
+      </div>
+<span class="text-outline-variant px-1">→</span>
+<span class="opacity-40">4. Export &amp; QR</span>
+</div>
+<!-- Dual Output Mode Tab Switcher -->
+<div class="flex items-center p-1 rounded-xl bg-surface-container-high shadow-inner">
+<button class="px-space-md py-1.5 rounded-lg font-headline-sm text-headline-sm transition-all duration-200 flex items-center gap-2 bg-surface text-on-surface shadow-sm" id="btn-mode-2d" onclick="switchOutputMode('2d')">
+<span class="material-symbols-outlined text-[18px] text-primary">photo_library</span>
+<span>Output A: 2D Strip</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded bg-primary-container text-on-primary-container uppercase tracking-wide">Retro Doodle</span>
+</button>
+<button class="px-space-md py-1.5 rounded-lg font-headline-sm text-headline-sm transition-all duration-200 flex items-center gap-2 text-on-surface-variant hover:text-on-surface" id="btn-mode-3d" onclick="switchOutputMode('3d')">
+<span class="material-symbols-outlined text-[18px] text-secondary">view_in_ar</span>
+<span>Output B: 3D Relief</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded bg-secondary-fixed text-on-secondary-fixed uppercase tracking-wide">Spatial Mesh</span>
+</button>
+</div>
+<div class="hidden lg:flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span> 300 DPI READY</span>
+<span class="text-outline-variant">//</span>
+<span class="font-label-md text-label-md text-primary font-semibold periodic-glitch-active">GLITCH SYNC: 2.0s</span>
+</div>
+</div>
+<!-- Main Kiosk Body (iPad 4:3 Optimized Split Canvas) -->
+<div class="w-full px-margin py-space-md flex flex-col lg:flex-row gap-space-lg items-start">
+<!-- LEFT WORKSPACE: High-Fidelity Active Preview Stage (approx 56% width) -->
+<div class="w-full lg:w-[56%] flex flex-col items-center">
+<!-- Stage Wrapper with hand-drawn tactile border or dark studio frame -->
+<div class="relative w-full rounded-2xl bg-surface-container-lowest p-space-md transition-all duration-300 shadow-md" id="preview-stage-container">
+<!-- Live Viewport Top Meta Bar -->
+<div class="w-full flex items-center justify-between pb-space-sm text-on-surface-variant font-label-md text-label-md">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface flex items-center gap-1" id="preview-badge-status">
+<span class="material-symbols-outlined text-[14px] text-primary">visibility</span>
+              REAL-TIME SIMULATION
+            </span>
+<span class="font-label-sm text-label-sm tracking-wider" id="preview-meta-details">50.8 × 152.4 mm · 4 POSE STRIP</span>
+</div>
+<!-- Quick Flip / Rotate & Grid Toggles -->
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface" onclick="togglePreviewGuide()" title="Toggle Alignment Grid">
+<span class="material-symbols-outlined text-[18px]">grid_4x4</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary" onclick="triggerHapticGlitch()" title="Flash Glitch Frame">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</button>
+</div>
+</div>
+<!-- Stage Viewport (Dynamic 2D / 3D Canvas Switch) -->
+<div class="relative w-full h-[540px] rounded-xl overflow-hidden bg-surface-container-low flex items-center justify-center">
+<!-- Chromatic aberration slice glitch overlay (animated every 2s via CSS in shell) -->
+<div class="glitch-slice-overlay opacity-30 pointer-events-none"></div>
+<!-- Alignment Grid Overlay (Toggled via JS) -->
+<div class="absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-200 z-30" id="grid-guide" style="background-image: linear-gradient(to right, rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 24px 24px;"></div>
+<!-- Left / Right Carousel Interactive Arrows -->
+<button class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-surface-container-lowest/90 backdrop-blur shadow-md flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-transform active:scale-90" onclick="cycleTemplate(-1)">
+<span class="material-symbols-outlined text-[28px]">chevron_left</span>
+</button>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-surface-container-lowest/90 backdrop-blur shadow-md flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-transform active:scale-90" onclick="cycleTemplate(1)">
+<span class="material-symbols-outlined text-[28px]">chevron_right</span>
+</button>
+<!-- Hand-Drawn Annotation Floating Labels (Referencing uploaded inspiration) -->
+<div class="absolute left-8 top-16 z-20 hidden sm:flex items-center gap-1.5 pointer-events-none">
+<span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">eye level</span>
+<svg class="w-8 h-4 text-on-surface" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 32 16">
+<path d="M0 8h26m-6-6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="absolute right-6 top-16 z-20 hidden sm:flex flex-col items-center justify-center w-14 h-14 rounded-full bg-surface-container-highest shadow-sm pointer-events-none text-center">
+<span class="font-headline-sm text-headline-sm leading-none">$0</span>
+<span class="font-label-sm text-label-sm opacity-80">= 4 pics</span>
+</div>
+<!-- ================= PREVIEW MODE A: 2D RETRO PHOTOSTRIP ================= -->
+<div class="relative z-10 flex flex-col items-center transition-all duration-300" id="preview-mode-2d">
+<!-- Photostrip Physical Card Container with frame styling -->
+<div class="w-[188px] p-2.5 rounded-lg shadow-xl flex flex-col items-center gap-2 transition-colors duration-300 bg-[#fffdf9] text-on-surface" id="photostrip-body">
+<!-- Frame Header Stamp / Doodles -->
+<div class="w-full flex items-center justify-between px-1 text-[10px] font-label-md">
+<span class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[13px]">favorite</span>
+<span id="stamp-header-text">SPATIAL SCULPT</span>
+</span>
+<span class="opacity-70">#04</span>
+</div>
+<!-- 4 Vertical Photos inside frame slots -->
+<div class="w-full flex flex-col gap-2">
+<!-- Photo 1 -->
+<div class="relative w-full h-[96px] rounded bg-surface-container-high overflow-hidden shadow-sm group">
+<img class="w-full h-full object-cover" data-alt="Playful close-up portrait of a young creative smiling in photobooth lighting, soft high-contrast keylight, genuine warm expression, candid art exhibition setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCp6k90M8jRzdtGn9e6NQvqJqcD25vGcYhgEEBC5l-o5FjhfLU80TPpvTzGRM_fQX6_HBnM9KUiNSTsXfuVBc04QtmL1l7zp8X_ipHSxCK2VJ7o4qRmFz_SUA8f7uUW5rP317i072MgqzlEMYtDxUVfT8XyLY1dgwfSkysQ7ZWSCMeODFzUU_qm5uGxekUCDY4s02Oz_j-hMuBVF7Xf8mD8PXvw6zv_nNnxGcxXF3C_yj1Ap68qbJC"/>
+<div class="absolute top-1 left-1 px-1 py-0.2 bg-on-background/70 backdrop-blur rounded font-label-sm text-label-sm text-on-primary">#1</div>
+</div>
+<!-- Photo 2 -->
+<div class="relative w-full h-[96px] rounded bg-surface-container-high overflow-hidden shadow-sm group">
+<img class="w-full h-full object-cover" data-alt="Two friends making funny expressive faces inside photobooth kiosk, stylish retro streetwear, Tokyo arcade interior mood, soft neon ambient rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnx7yjqfzUKbZqy21-NqYjJug5ApAU60IJ6S4Iuw4V9HkSLNjM3mBrkA0rtXUhf4L1ApWaReSgNhIGox4vFcPH2T955U1jRZ2Hunk7pzR4zjspPch53U8Orpj5zwggc5UeoWKMpLDuevStlXPw50CEBGuMHwtj96jYPABizrDnJbBvg7m5CoTVLI7ALGtUfDkPI7wmhdd_gTBOJIPlw83ixdlDt6NsXxWL3hATkJIc-KvQ0bj3IuYs"/>
+<div class="absolute top-1 left-1 px-1 py-0.2 bg-on-background/70 backdrop-blur rounded font-label-sm text-label-sm text-on-primary">#2</div>
+</div>
+<!-- Photo 3 -->
+<div class="relative w-full h-[96px] rounded bg-surface-container-high overflow-hidden shadow-sm group">
+<img class="w-full h-full object-cover" data-alt="Creative subject holding small ceramic sculpture figurine towards camera, photobooth flash aesthetic, sharp depth and vivid highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqFy3_09H7tytmXDwYNdnH4dtrKf1thzYOeqE79ZkswvMjHTKqGY-l4Q6pWXI7UIVQKKO6FtDPOVv-58JdLqoPCgf60FscDmO7aaBJinpubB-msV9VhOYCWtj4cMJbsHrcV2tyWCTFvOl7zZhU9aCmdBc6nSkOfbpyeOKtv0OJtm9O1LH23tMWV2I2pDNBlxF5id7nXefg7OWYrcpEf8vobjPfGBknZcjVsHtJOkNah7Muz0H4yjSd"/>
+<div class="absolute top-1 left-1 px-1 py-0.2 bg-on-background/70 backdrop-blur rounded font-label-sm text-label-sm text-on-primary">#3</div>
+</div>
+<!-- Photo 4 -->
+<div class="relative w-full h-[96px] rounded bg-surface-container-high overflow-hidden shadow-sm group">
+<img class="w-full h-full object-cover" data-alt="Tender peace-sign photobooth pose with retro warm tint, slight motion trail, arcade photobooth candid film aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9DK0MaqCYlEZwHrpQHVHrQ0Qvjmii_joQ8xOXdi_lUvVNxT6aC-7iTHbQ1iXYgIK0ugX-yfQEz6UdohXLRlymyA--_s5QDCX6BESfxWNC9hlUF3HBkC2aH43cSVHemiNmIuBBu5IbOF6dbTmdkmTVsJNPu0rODer3XWnXPjSGDqqnFB-RCmOg9E1b125vO18WK3oe2Qj9TnPequwiZtu4_-7vRBfYXv8hey_sbITsJFQM5R7Cm1O8"/>
+<div class="absolute top-1 left-1 px-1 py-0.2 bg-on-background/70 backdrop-blur rounded font-label-sm text-label-sm text-on-primary">#4</div>
+</div>
+</div>
+<!-- Strip Footer with Customizable Date Stamp & Mascot Sticker -->
+<div class="w-full flex items-center justify-between pt-1 px-1">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold tracking-tight uppercase" id="strip-footer-label">DEC 19 · TOKYO</span>
+<span class="font-label-sm text-label-sm opacity-60">ARCADE PHOTOLAB</span>
+</div>
+<!-- Pixel Cat Mascot Badge (inspired by upload) -->
+<div class="w-7 h-7 rounded bg-surface-container-high flex items-center justify-center text-primary shadow-xs" id="mascot-cat-badge">
+<span class="material-symbols-outlined text-[18px]">pets</span>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= PREVIEW MODE B: 3D BAS-RELIEF PLAQUE (Initially Hidden) ================= -->
+<div class="relative z-10 hidden flex-col items-center justify-center w-full px-6 transition-all duration-300" id="preview-mode-3d">
+<!-- Architectural 3D Plaque Bezel Frame Container -->
+<div class="relative w-[340px] p-5 rounded-2xl bg-surface-container-high shadow-2xl transition-all duration-300 flex flex-col items-center" id="relief-frame-wrapper">
+<!-- Plaque Technical Header Engraving -->
+<div class="w-full flex items-center justify-between pb-3 text-on-surface font-label-md text-label-md">
+<div class="flex items-center gap-1.5 font-bold">
+<span class="material-symbols-outlined text-[16px] text-secondary">deployed_code</span>
+<span id="plaque-title-text">ARCHITECTURAL BAS-RELIEF</span>
+</div>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-secondary text-on-secondary">43.0mm Z</span>
+</div>
+<!-- Bas-Relief 3D Sculpted Depth Mesh View (matching uploaded screenshot 3) -->
+<div class="relative w-full h-[260px] rounded-xl overflow-hidden bg-surface-container-lowest shadow-inner flex items-center justify-center">
+<!-- 3D Perspective Grid Bed -->
+<div class="absolute inset-0 pointer-events-none opacity-40" style="background-image: linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px); background-size: 16px 16px;"></div>
+<!-- 3D Depth Figurine Render -->
+<img class="w-full h-full object-cover" data-alt="Monochromatic textured 3D bas-relief mesh sculpture of a hooded character figurine on an architectural grid pedestal, tactile sandstone and clay depth map contours, precision directional lighting casting dynamic tactile shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdLTcgxDTOCwheU-lZI17aIwM0gRpxvZ7ARjdsBD79uh4EgR7loptSg7CmnupriuJVn4JmBNyZwMgM3bTF3O6J9X6PT9g6BFDQdct6_NcHBKEc1WHVO66MfzX5X236NFm3LHyE0KwxM0k4Druc50xV5EcAo-rD65JuGFsGSf3SU-Ivp0aMl0QL3z0iUGzjMGs6etYGuGtrnba19VAvV7MGVoWSm6yAwiflvpKEbus_u6xFvBFlBO8S"/>
+<!-- Telemetry Coordinates Badge -->
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-on-background/80 backdrop-blur font-label-sm text-label-sm text-on-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-ping"></span>
+<span>1,221,290 TRIANGLES · 10mm CAD GRID</span>
+</div>
+</div>
+<!-- Plaque Pedestal Inscription -->
+<div class="w-full flex items-center justify-between pt-4">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm tracking-tight text-on-surface" id="plaque-footer-meta">CNC CNC-MILL READY</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SOLID POLISHED RESIN STAND</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[22px] text-secondary">qr_code_2</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">ID: #9921-SC</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Output Comparison Switcher Pills Below Stage -->
+<div class="w-full mt-space-sm flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Current View:</span>
+<button class="px-2.5 py-1 rounded-full font-label-md text-label-md bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" onclick="switchOutputMode('2d')">
+              Strip A (2D)
+            </button>
+<button class="px-2.5 py-1 rounded-full font-label-md text-label-md bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" onclick="switchOutputMode('3d')">
+              Plaque B (3D)
+            </button>
+</div>
+<!-- Color Mode Filter Hand-Drawn Style Toggle (b&w / color from prompt) -->
+<div class="flex items-center gap-space-xs bg-surface-container px-2 py-1 rounded-xl">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">B&amp;W</span>
+<button class="w-10 h-5 rounded-full bg-primary-container p-0.5 flex items-center transition-colors" id="filter-toggle-btn" onclick="toggleFilterMode()">
+<span class="w-4 h-4 rounded-full bg-on-primary shadow-xs transition-transform transform translate-x-5" id="filter-knob"></span>
+</button>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">COLOR</span>
+</div>
+</div>
+</div>
+<!-- Quick instructions bar below preview (Doodle Arcade Style) -->
+<div class="w-full mt-space-sm p-space-sm rounded-xl bg-surface-container flex items-center justify-between text-on-surface-variant font-body-md text-body-md">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-bold font-label-md text-label-md flex items-center justify-center">?</span>
+<span>Both 2D Strip and 3D Plaque print files are produced simultaneously.</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase font-semibold text-primary">Sync Active</span>
+</div>
+</div>
+<!-- RIGHT INSPECTOR PANEL: Template Selector & Customizer (approx 44% width) -->
+<div class="w-full lg:w-[44%] flex flex-col gap-space-md">
+<!-- Panel Header -->
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span>SELECT FRAME TEMPLATE</span>
+</h2>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase font-bold">
+            Live Preview
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+          Select a template style to frame your 4-cut photostrip and physical 3D relief plaque.
+        </p>
+</div>
+<!-- Category Filter Tabs -->
+<div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface-container overflow-x-auto w-full">
+<button class="category-pill px-space-md py-1 rounded-lg font-headline-sm text-headline-sm bg-surface text-on-surface shadow-xs transition-all" onclick="filterCategory('all', this)">
+          All Styles
+        </button>
+<button class="category-pill px-space-md py-1 rounded-lg font-headline-sm text-headline-sm text-on-surface-variant hover:text-on-surface transition-all" onclick="filterCategory('retro', this)">
+          Retro Doodle
+        </button>
+<button class="category-pill px-space-md py-1 rounded-lg font-headline-sm text-headline-sm text-on-surface-variant hover:text-on-surface transition-all" onclick="filterCategory('minimal', this)">
+          Studio CAD
+        </button>
+<button class="category-pill px-space-md py-1 rounded-lg font-headline-sm text-headline-sm text-on-surface-variant hover:text-on-surface transition-all" onclick="filterCategory('cyber', this)">
+          Glitch Y2K
+        </button>
+</div>
+<!-- 2x2 Template Card Grid -->
+<div class="grid grid-cols-2 gap-space-sm w-full">
+<!-- CARD 1 (Active Default: Pastel Hearts & Doodles) -->
+<div class="template-card relative p-space-sm rounded-xl bg-surface-container-lowest transition-all cursor-pointer shadow-md transform -translate-y-0.5" id="card-tpl-1" onclick="selectTemplate(1)">
+<div class="absolute top-2 right-2 z-10 w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<!-- Miniature thumbnail preview -->
+<div class="w-full h-24 rounded-lg bg-[#fff1f2] flex items-center justify-center overflow-hidden relative mb-2">
+<div class="w-12 h-20 bg-surface rounded shadow-xs p-1 flex flex-col justify-between items-center">
+<span class="text-[8px] text-primary font-bold">♥ DOODLE</span>
+<div class="w-full h-3 bg-surface-container rounded-xs"></div>
+<div class="w-full h-3 bg-surface-container rounded-xs"></div>
+<div class="w-full h-3 bg-surface-container rounded-xs"></div>
+<span class="text-[6px] opacity-60">HEARTS</span>
+</div>
+<span class="absolute bottom-1 right-1 font-label-sm text-label-sm text-primary px-1 rounded bg-surface/80">#01</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface block leading-tight">Pastel Hearts &amp; Doodles</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mt-0.5">Hand-sketched ink &amp; stickers</span>
+</div>
+<!-- CARD 2: Minimalist Noir Monogram -->
+<div class="template-card relative p-space-sm rounded-xl bg-surface-container transition-all cursor-pointer hover:bg-surface-container-high" id="card-tpl-2" onclick="selectTemplate(2)">
+<div class="w-full h-24 rounded-lg bg-surface-container-highest flex items-center justify-center overflow-hidden relative mb-2">
+<div class="w-12 h-20 bg-on-background rounded shadow-xs p-1 flex flex-col justify-between items-center text-surface">
+<span class="text-[8px] tracking-widest font-mono font-bold">NOIR</span>
+<div class="w-full h-3 bg-tertiary rounded-xs"></div>
+<div class="w-full h-3 bg-tertiary rounded-xs"></div>
+<div class="w-full h-3 bg-tertiary rounded-xs"></div>
+<span class="text-[6px] opacity-70">ARCHIVAL</span>
+</div>
+<span class="absolute bottom-1 right-1 font-label-sm text-label-sm text-on-surface px-1 rounded bg-surface/80">#02</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface block leading-tight">Minimalist Noir Monogram</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mt-0.5">Swiss typography &amp; slim border</span>
+</div>
+<!-- CARD 3: Arcade Glitch 1999 -->
+<div class="template-card relative p-space-sm rounded-xl bg-surface-container transition-all cursor-pointer hover:bg-surface-container-high" id="card-tpl-3" onclick="selectTemplate(3)">
+<div class="w-full h-24 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden relative mb-2">
+<div class="w-12 h-20 bg-secondary rounded shadow-xs p-1 flex flex-col justify-between items-center text-on-secondary">
+<span class="text-[8px] font-mono font-bold tracking-tight">GLITCH'99</span>
+<div class="w-full h-3 bg-surface-container rounded-xs"></div>
+<div class="w-full h-3 bg-surface-container rounded-xs"></div>
+<div class="w-full h-3 bg-surface-container rounded-xs"></div>
+<span class="text-[6px] text-primary-fixed">120HZ CAD</span>
+</div>
+<span class="absolute bottom-1 right-1 font-label-sm text-label-sm text-secondary px-1 rounded bg-surface/80">#03</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface block leading-tight">Arcade Glitch 1999</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mt-0.5">Pixel mascots &amp; neon glitch bars</span>
+</div>
+<!-- CARD 4: 3D Architectural Plinth (Specialized for Output B) -->
+<div class="template-card relative p-space-sm rounded-xl bg-surface-container transition-all cursor-pointer hover:bg-surface-container-high" id="card-tpl-4" onclick="selectTemplate(4)">
+<div class="w-full h-24 rounded-lg bg-surface-container-highest flex items-center justify-center overflow-hidden relative mb-2">
+<div class="w-14 h-18 bg-surface-container-low rounded-lg shadow-sm p-1 flex flex-col justify-between items-center">
+<div class="w-full h-9 bg-primary/20 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-primary">view_in_ar</span>
+</div>
+<span class="text-[7px] font-mono font-bold text-on-surface">OAK PLINTH</span>
+<span class="text-[5px] text-primary font-semibold">43.0mm RELIEF</span>
+</div>
+<span class="absolute bottom-1 right-1 font-label-sm text-label-sm text-on-surface px-1 rounded bg-surface/80">#04</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface block leading-tight">Architectural Desk Plaque</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mt-0.5">Solid beveled stand + depth tag</span>
+</div>
+</div>
+<!-- Frame Customization Settings Sub-Panel -->
+<div class="p-space-md rounded-2xl bg-surface-container flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">Customization Options</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Instant Rendering</span>
+</div>
+<!-- Frame Tint Color Swatches -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase">Paper / Material Tint</label>
+<div class="flex items-center gap-2">
+<button class="swatch-btn w-9 h-9 rounded-full bg-[#fffdf9] shadow-sm transform scale-110 flex items-center justify-center transition-transform" onclick="setFrameColor('#fffdf9', this)" title="Classic Cream"></button>
+<button class="swatch-btn w-9 h-9 rounded-full bg-[#ffd6d6] shadow-sm flex items-center justify-center transition-transform" onclick="setFrameColor('#ffd6d6', this)" title="Pastel Pink"></button>
+<button class="swatch-btn w-9 h-9 rounded-full bg-[#d5f5e3] shadow-sm flex items-center justify-center transition-transform" onclick="setFrameColor('#d5f5e3', this)" title="Arcade Mint"></button>
+<button class="swatch-btn w-9 h-9 rounded-full bg-[#222222] shadow-sm flex items-center justify-center transition-transform" onclick="setFrameColor('#222222', this)" title="Obsidian Charcoal"></button>
+<button class="swatch-btn w-9 h-9 rounded-full bg-[#1b2430] shadow-sm flex items-center justify-center transition-transform" onclick="setFrameColor('#1b2430', this)" title="Deep CAD Navy"></button>
+</div>
+</div>
+<!-- Date & Location Stamp Field -->
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase">Footer Timestamp &amp; Tag</label>
+<button class="font-label-sm text-label-sm text-primary hover:underline" onclick="randomizeStampText()">Shuffle Preset</button>
+</div>
+<div class="flex items-center gap-2">
+<div class="relative flex-1">
+<input class="w-full px-space-sm py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-xs focus:outline-none" id="input-stamp-text" oninput="updateCustomStamp(this.value)" type="text" value="DEC 19 • Arc Studio Tokyo • Booth #04"/>
+</div>
+</div>
+</div>
+<!-- Toggles: Stickers & Stamp Badges -->
+<div class="grid grid-cols-2 gap-space-sm pt-1">
+<button class="p-2 rounded-xl bg-surface-container-lowest flex items-center justify-between text-on-surface shadow-xs hover:bg-surface-container-high transition-colors" onclick="toggleSticker('cat', this)">
+<span class="flex items-center gap-1.5 font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px] text-primary">pets</span>
+              Cat Mascot
+            </span>
+<span class="font-label-sm text-label-sm font-bold text-primary">ON</span>
+</button>
+<button class="p-2 rounded-xl bg-surface-container-lowest flex items-center justify-between text-on-surface shadow-xs hover:bg-surface-container-high transition-colors" onclick="toggleSticker('lidar', this)">
+<span class="flex items-center gap-1.5 font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px] text-secondary">radar</span>
+              LiDAR Stamp
+            </span>
+<span class="font-label-sm text-label-sm font-bold text-secondary">ON</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- BOTTOM KIOSK NAVIGATION & CALL TO ACTION BAR -->
+<div class="w-full mt-space-md px-margin py-space-sm bg-surface-container flex flex-col sm:flex-row items-center justify-between gap-space-sm shadow-sm">
+<!-- Left Navigation: Back button -->
+<a class="px-space-md py-space-sm rounded-xl bg-surface-container-high text-on-surface font-headline-sm text-headline-sm hover:bg-surface-container-highest transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span>Back to Sculptor</span>
+</a>
+<!-- Center System Status -->
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="font-semibold text-on-surface">Dual Template Bound:</span>
+<span>2D Strip &amp; 3D Depth Plaque Ready</span>
+<span class="opacity-50">|</span>
+<span>Total Price: $0.00 (Kiosk Token)</span>
+</div>
+<!-- Right Primary CTA: Proceed to Export / QR Code -->
+<button class="w-full sm:w-auto px-space-xl py-space-md rounded-xl bg-primary text-on-primary font-headline-md text-headline-md shadow-lg flex items-center justify-center gap-3 transition-transform active:scale-95 group" onclick="proceedToExport()">
+<span>CONTINUE TO QR &amp; PRINT</span>
+<span class="material-symbols-outlined text-[24px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Client-side Interactive Kiosk Controller Script -->
+<script>
+  let currentOutputMode = '2d';
+  let activeTemplateId = 1;
+  let isGrayscale = false;
+  let catStickerEnabled = true;
+  let lidarStampEnabled = true;
+
+  const presets = [
+    "DEC 19 • Arc Studio Tokyo • Booth #04",
+    "SHIBUYA LAB • 3D DEPTH KIOSK • 2025",
+    "MEMORIES IN 3D • ARCADE ARCHIVE #12",
+    "NEO TOKYO • 43.0MM RELIEF • PASS #08"
+  ];
+
+  function switchOutputMode(mode) {
+    currentOutputMode = mode;
+    const btn2d = document.getElementById('btn-mode-2d');
+    const btn3d = document.getElementById('btn-mode-3d');
+    const view2d = document.getElementById('preview-mode-2d');
+    const view3d = document.getElementById('preview-mode-3d');
+    const metaDetails = document.getElementById('preview-meta-details');
+
+    if (mode === '2d') {
+      btn2d.classList.add('bg-surface', 'text-on-surface', 'shadow-sm');
+      btn2d.classList.remove('text-on-surface-variant');
+      btn3d.classList.remove('bg-surface', 'text-on-surface', 'shadow-sm');
+      btn3d.classList.add('text-on-surface-variant');
+
+      view2d.classList.remove('hidden');
+      view3d.classList.add('hidden');
+      metaDetails.textContent = "50.8 × 152.4 mm · 4 POSE STRIP";
+    } else {
+      btn3d.classList.add('bg-surface', 'text-on-surface', 'shadow-sm');
+      btn3d.classList.remove('text-on-surface-variant');
+      btn2d.classList.remove('bg-surface', 'text-on-surface', 'shadow-sm');
+      btn2d.classList.add('text-on-surface-variant');
+
+      view3d.classList.remove('hidden');
+      view2d.classList.add('hidden');
+      metaDetails.textContent = "200 × 150 × 43.0 mm · 3D CNC RELIEF";
+    }
+  }
+
+  function selectTemplate(id) {
+    activeTemplateId = id;
+    
+    // Reset selection indicators
+    for (let i = 1; i <= 4; i++) {
+      const card = document.getElementById('card-tpl-' + i);
+      if (card) {
+        card.classList.remove('bg-surface-container-lowest', 'shadow-md', '-translate-y-0.5');
+        card.classList.add('bg-surface-container');
+        const check = card.querySelector('.material-symbols-outlined');
+        if (check && check.parentElement && check.parentElement.classList.contains('absolute')) {
+          check.parentElement.remove();
+        }
+      }
+    }
+
+    // Activate selected card
+    const target = document.getElementById('card-tpl-' + id);
+    if (target) {
+      target.classList.add('bg-surface-container-lowest', 'shadow-md', '-translate-y-0.5');
+      target.classList.remove('bg-surface-container');
+
+      const badge = document.createElement('div');
+      badge.className = "absolute top-2 right-2 z-10 w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-xs";
+      badge.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span>';
+      target.appendChild(badge);
+    }
+
+    // Apply template styling updates to preview
+    const stripBody = document.getElementById('photostrip-body');
+    const reliefWrapper = document.getElementById('relief-frame-wrapper');
+    const headerText = document.getElementById('stamp-header-text');
+
+    if (id === 1) {
+      stripBody.style.borderRadius = "0.75rem";
+      headerText.textContent = "SPATIAL SCULPT";
+      if (reliefWrapper) reliefWrapper.style.borderRadius = "1rem";
+    } else if (id === 2) {
+      stripBody.style.borderRadius = "0.125rem";
+      headerText.textContent = "NOIR ARCHIVE";
+      if (reliefWrapper) reliefWrapper.style.borderRadius = "0.25rem";
+    } else if (id === 3) {
+      stripBody.style.borderRadius = "0.5rem";
+      headerText.textContent = "GLITCH '99 ARCADE";
+      if (reliefWrapper) reliefWrapper.style.borderRadius = "0.75rem";
+    } else if (id === 4) {
+      // Auto-switch to 3D output to showcase the architectural plinth
+      switchOutputMode('3d');
+    }
+  }
+
+  function cycleTemplate(direction) {
+    let next = activeTemplateId + direction;
+    if (next < 1) next = 4;
+    if (next > 4) next = 1;
+    selectTemplate(next);
+  }
+
+  function toggleFilterMode() {
+    isGrayscale = !isGrayscale;
+    const knob = document.getElementById('filter-knob');
+    const strip = document.getElementById('photostrip-body');
+    const relief = document.getElementById('relief-frame-wrapper');
+
+    if (isGrayscale) {
+      knob.style.transform = "translateX(0px)";
+      if (strip) strip.style.filter = "grayscale(100%) contrast(110%)";
+      if (relief) relief.style.filter = "grayscale(100%) contrast(110%)";
+    } else {
+      knob.style.transform = "translateX(20px)";
+      if (strip) strip.style.filter = "none";
+      if (relief) relief.style.filter = "none";
+    }
+  }
+
+  function setFrameColor(hexColor, buttonEl) {
+    const stripBody = document.getElementById('photostrip-body');
+    const reliefWrapper = document.getElementById('relief-frame-wrapper');
+    
+    if (stripBody) {
+      stripBody.style.backgroundColor = hexColor;
+      if (hexColor === '#222222' || hexColor === '#1b2430') {
+        stripBody.style.color = "#ffffff";
+      } else {
+        stripBody.style.color = "#1c1c19";
+      }
+    }
+
+    if (reliefWrapper) {
+      reliefWrapper.style.backgroundColor = hexColor;
+      if (hexColor === '#222222' || hexColor === '#1b2430') {
+        reliefWrapper.style.color = "#ffffff";
+      } else {
+        reliefWrapper.style.color = "#1c1c19";
+      }
+    }
+
+    document.querySelectorAll('.swatch-btn').forEach(btn => {
+      btn.classList.remove('scale-110');
+    });
+    buttonEl.classList.add('scale-110');
+  }
+
+  function updateCustomStamp(value) {
+    const label = document.getElementById('strip-footer-label');
+    const plaqueTitle = document.getElementById('plaque-title-text');
+    if (label) label.textContent = value.slice(0, 26);
+    if (plaqueTitle) plaqueTitle.textContent = value.slice(0, 22).toUpperCase();
+  }
+
+  function randomizeStampText() {
+    const randomItem = presets[Math.floor(Math.random() * presets.length)];
+    const input = document.getElementById('input-stamp-text');
+    if (input) {
+      input.value = randomItem;
+      updateCustomStamp(randomItem);
+    }
+  }
+
+  function toggleSticker(type, btn) {
+    const statusSpan = btn.querySelector('span:last-child');
+    if (type === 'cat') {
+      catStickerEnabled = !catStickerEnabled;
+      const catBadge = document.getElementById('mascot-cat-badge');
+      if (catBadge) catBadge.style.display = catStickerEnabled ? 'flex' : 'none';
+      statusSpan.textContent = catStickerEnabled ? 'ON' : 'OFF';
+      statusSpan.className = catStickerEnabled ? 'font-label-sm text-label-sm font-bold text-primary' : 'font-label-sm text-label-sm font-bold opacity-40';
+    } else if (type === 'lidar') {
+      lidarStampEnabled = !lidarStampEnabled;
+      statusSpan.textContent = lidarStampEnabled ? 'ON' : 'OFF';
+      statusSpan.className = lidarStampEnabled ? 'font-label-sm text-label-sm font-bold text-secondary' : 'font-label-sm text-label-sm font-bold opacity-40';
+    }
+  }
+
+  function togglePreviewGuide() {
+    const grid = document.getElementById('grid-guide');
+    if (grid) {
+      grid.classList.toggle('opacity-0');
+      grid.classList.toggle('opacity-100');
+    }
+  }
+
+  function triggerHapticGlitch() {
+    const stage = document.getElementById('preview-stage-container');
+    if (stage) {
+      stage.classList.add('periodic-glitch-active');
+      setTimeout(() => {
+        stage.classList.remove('periodic-glitch-active');
+      }, 400);
+    }
+  }
+
+  function filterCategory(cat, btn) {
+    document.querySelectorAll('.category-pill').forEach(pill => {
+      pill.classList.remove('bg-surface', 'text-on-surface', 'shadow-xs');
+      pill.classList.add('text-on-surface-variant');
+    });
+    btn.classList.add('bg-surface', 'text-on-surface', 'shadow-xs');
+    btn.classList.remove('text-on-surface-variant');
+
+    if (cat === 'retro') selectTemplate(1);
+    if (cat === 'minimal') selectTemplate(2);
+    if (cat === 'cyber') selectTemplate(3);
+  }
+
+  function proceedToExport() {
+    triggerHapticGlitch();
+    const btn = event.currentTarget;
+    btn.innerHTML = '<span class="material-symbols-outlined text-[24px] animate-spin">refresh</span><span>GENERATING PRINT RENDER...</span>';
+    setTimeout(() => {
+      window.location.hash = "#gallery-export";
+      btn.innerHTML = '<span>CONTINUE TO QR &amp; PRINT</span><span class="material-symbols-outlined text-[24px]">arrow_forward</span>';
+    }, 600);
+  }
+</script></main><footer class="w-full bg-surface-container-low py-space-md"><div class="w-full px-margin flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-label-sm text-label-sm"><div class="flex items-center gap-space-sm"><span class="">STUDIO / DOODLE DUAL PIPELINE</span><span class="">·</span><span class="">2360 × 1640 PX NATIVE RETINA</span><span class="">·</span><span class="">GLITCH PULSE: 2000MS</span></div><div class="font-label-md text-label-md text-outline">ARCADE DEPTH LAB © 2025</div></div></footer>
+</body></html>

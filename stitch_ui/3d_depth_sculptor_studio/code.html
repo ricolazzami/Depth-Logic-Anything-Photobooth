@@ -1,0 +1,451 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"><meta content="web_standard" name="shell-type"><title>SpatialSculpt Photobooth &amp; 3D Depth Kiosk</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=JetBrains+Mono:wght@500;600&amp;family=Space+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}@keyframes microGlitch{0%,94%,100%{transform:translate(0,0);filter:none;}95%{transform:translate(-2px,1px);filter:drop-shadow(-2px 0 #ff0055) drop-shadow(2px 0 #00ffff);}97%{transform:translate(2px,-1px);filter:drop-shadow(2px 0 #ff0055) drop-shadow(-2px 0 #00ffff);}98%{transform:translate(-1px,-1px);filter:none;}}@keyframes chromaticAberration{0%,94%,100%{clip-path:inset(0 0 0 0);opacity:0;}95%{clip-path:inset(20% 0 65% 0);opacity:0.8;transform:translateX(-3px);}97%{clip-path:inset(60% 0 15% 0);opacity:0.9;transform:translateX(3px);}98%{clip-path:inset(40% 0 45% 0);opacity:0.5;transform:translateX(-1px);}}.periodic-glitch-active{animation:microGlitch 2s infinite ease-in-out;}.glitch-slice-overlay{pointer-events:none;position:absolute;inset:0;animation:chromaticAberration 2s infinite linear;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error-container": "#93000a", "background": "#fcf9f4", "tertiary-fixed": "#e5e2e1", "secondary-fixed": "#d6e3ff", "primary-fixed": "#62ff95", "tertiary-container": "#b8b6b6", "primary": "#006d34", "on-secondary": "#ffffff", "error-container": "#ffdad6", "secondary-container": "#0073e0", "surface-bright": "#fcf9f4", "on-background": "#1c1c19", "surface-container-high": "#ebe8e3", "surface-variant": "#e5e2dd", "surface-tint": "#006d34", "surface-container-highest": "#e5e2dd", "on-secondary-container": "#fefcff", "outline-variant": "#bbcbba", "surface-container-low": "#f6f3ee", "on-primary-fixed": "#00210b", "inverse-on-surface": "#f3f0eb", "surface-container": "#f0ede9", "surface-container-lowest": "#ffffff", "on-secondary-fixed-variant": "#00468d", "inverse-surface": "#31302d", "secondary": "#005ab3", "on-primary-fixed-variant": "#005226", "inverse-primary": "#2fe378", "on-surface": "#1c1c19", "primary-fixed-dim": "#2fe378", "error": "#ba1a1a", "primary-container": "#00d26a", "on-tertiary-container": "#484747", "on-tertiary-fixed-variant": "#474746", "tertiary": "#5f5e5e", "on-secondary-fixed": "#001b3e", "on-primary-container": "#005426", "outline": "#6c7b6c", "secondary-fixed-dim": "#aac7ff", "on-surface-variant": "#3c4a3d", "on-error": "#ffffff", "surface": "#fcf9f4", "surface-dim": "#dcdad5", "tertiary-fixed-dim": "#c8c6c5", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#1b1b1b", "on-primary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "space-xl": "2.25rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "margin": "1.5rem", "gutter": "1.25rem", "space-lg": "1.5rem" }, "fontFamily": { "label-md": [ "JetBrains Mono" ], "display-lg-mobile": [ "Bricolage Grotesque" ], "headline-md": [ "Bricolage Grotesque" ], "label-sm": [ "JetBrains Mono" ], "headline-lg": [ "Bricolage Grotesque" ], "body-lg": [ "Space Grotesk" ], "body-md": [ "Space Grotesk" ], "headline-sm": [ "Space Grotesk" ], "display-lg": [ "Bricolage Grotesque" ], "label-lg": [ "JetBrains Mono" ] }, "fontSize": { "label-md": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" } ], "display-lg-mobile": [ "36px", { "lineHeight": "42px", "letterSpacing": "-0.01em", "fontWeight": "800" } ], "headline-md": [ "24px", { "lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "700" } ], "label-sm": [ "9px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "500" } ], "headline-lg": [ "32px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "body-lg": [ "16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "500" } ], "body-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-sm": [ "18px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" } ], "display-lg": [ "48px", { "lineHeight": "54px", "letterSpacing": "-0.02em", "fontWeight": "800" } ], "label-lg": [ "13px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background text-on-surface font-body-md text-body-md select-none touch-none antialiased"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 w-full px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm font-label-md text-label-md tracking-wider uppercase"><span class="inline-block w-2.5 h-2.5 rounded-full bg-primary-container animate-ping"></span><span class="text-primary font-bold">KIOSK ACTIVE</span><span class="text-outline-variant">//</span><span class="text-on-surface-variant font-label-sm text-label-sm">IPAD GEN 11 · 4:3 120HZ</span></div></div><nav class="flex items-center gap-space-xs p-1 rounded-xl bg-surface-container" data-active-classes="bg-primary-container text-on-primary-container font-headline-sm"><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" data-path="photobooth-capture" href="#">Capture</a><a aria-current="page" class="px-space-md py-space-xs rounded-lg transition-colors bg-primary-container text-on-primary-container font-headline-sm" data-path="depth-sculptor" href="#">3D Sculptor</a><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" data-path="gallery-export" href="#">Gallery &amp; Print</a></nav><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md"><span class="text-primary font-bold">LiDAR</span><span class="text-outline-variant">|</span><span class="">43.0mm</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative w-full pt-14 bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="relative w-full overflow-hidden bg-inverse-surface text-inverse-on-surface" style="background-color: rgb(18, 19, 22);">
+<!-- Ambient Subsurface Light Spheres for Depth -->
+<div class="pointer-events-none absolute -top-40 -left-40 w-96 h-96 rounded-full bg-secondary/15 blur-3xl"></div>
+<div class="pointer-events-none absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-secondary-container/10 blur-3xl"></div>
+<!-- Top Studio Context Bar -->
+<div class="w-full px-margin py-space-sm flex items-center justify-between z-20 relative bg-inverse-surface/80 backdrop-blur-md">
+<div class="flex items-center gap-space-md">
+<button class="h-10 px-space-md rounded-full bg-surface-container-high/20 hover:bg-surface-container-high/40 text-inverse-on-surface flex items-center gap-space-xs transition-all active:scale-95 shadow-sm" id="btn-back" type="button">
+<span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+<span class="font-headline-sm text-headline-sm">Back</span>
+</button>
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-inverse-on-surface/80">
+<span class="font-bold tracking-wide underline underline-offset-4 decoration-secondary-container">Scan 13 Oct, 20:19</span>
+<span class="material-symbols-outlined text-[16px] text-outline-variant">edit_square</span>
+</div>
+</div>
+<!-- Quick Viewport Camera Toolbar -->
+<div class="flex items-center gap-space-xs bg-surface-container-high/15 p-1 rounded-xl shadow-inner">
+<button class="px-space-sm py-1 rounded-lg bg-surface-container-high/40 text-inverse-on-surface font-label-sm text-label-sm flex items-center gap-1" id="cam-perspective">
+<span class="material-symbols-outlined text-[15px]">view_in_ar</span>
+          PERSPECTIVE
+        </button>
+<button class="px-space-sm py-1 rounded-lg hover:bg-surface-container-high/30 text-inverse-on-surface/70 font-label-sm text-label-sm" id="cam-front">FRONT</button>
+<button class="px-space-sm py-1 rounded-lg hover:bg-surface-container-high/30 text-inverse-on-surface/70 font-label-sm text-label-sm" id="cam-top">TOP</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container-high/30 text-inverse-on-surface/80" id="btn-wireframe">
+<span class="material-symbols-outlined text-[18px]">grid_4x4</span>
+</button>
+</div>
+</div>
+<!-- Main iPad 4:3 Studio Layout Grid (Left: 70% Viewport, Right: 30% Control Inspector) -->
+<div class="w-full px-margin pb-margin pt-space-xs grid grid-cols-1 lg:grid-cols-12 gap-gutter items-stretch">
+<!-- LEFT COLUMN: 3D Relief Mesh Viewport (Lg 8 cols ~ 67-70%) -->
+<div class="lg:col-span-8 flex flex-col justify-between relative rounded-2xl overflow-hidden bg-surface-container-lowest/[0.04] shadow-2xl min-h-[580px] lg:min-h-[720px]" style="background-color: rgb(22, 23, 26);"><!-- Top Telemetry Metadata Pill & Viewport Settings matching IMG_1134.PNG -->
+<div class="relative z-20 p-space-md flex items-center justify-between">
+  <div class="inline-flex items-center gap-space-sm px-space-md py-1.5 rounded-xl bg-[#26282d]/90 text-inverse-on-surface text-label-md font-label-md shadow-md">
+    <span class="">200 × 150 × <span id="telemetry-depth" class="">43.0</span> mm</span>
+    <span class="text-[#71767f]">·</span>
+    <span class="">1.221.290 triangles</span>
+    <span class="text-[#71767f]">·</span>
+    <span class="text-[#9fa4ad]">10 mm grid</span>
+  </div>
+  <div class="flex items-center gap-space-xs">
+    <button class="w-10 h-10 rounded-xl bg-[#26282d]/80 hover:bg-[#34373e] text-inverse-on-surface flex items-center justify-center shadow-md transition-colors" id="btn-toggle-options" title="Viewport Display Options">
+      <span class="material-symbols-outlined text-[20px]">tune</span>
+    </button>
+  </div>
+</div>
+
+<!-- Interactive 3D Viewport with Ground Floor Grid and Upright Relief Sculpture Model -->
+<div class="relative z-10 flex-1 flex flex-col items-center justify-end select-none cursor-grab active:cursor-grabbing pb-8 overflow-hidden" id="mesh-viewport-canvas">
+  <!-- Ground Plane Perspective Grid (only on floor beneath model, fading to back into dark background) -->
+  <div class="absolute inset-x-0 bottom-0 h-[360px] pointer-events-none flex items-center justify-center overflow-hidden" style="perspective: 900px;">
+    <div class="w-[160%] h-[500px] border-t border-white/20 origin-bottom" style="transform: rotateX(68deg) translateY(40px); background-size: 40px 40px; background-image: linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 1px, transparent 1px); mask-image: linear-gradient(to top, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 95%); -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 95%);">
+    </div>
+  </div>
+
+  <!-- 3D Bas-Relief Sculpture Plaque Model (Upright on ground plane, matching IMG_1134.PNG) -->
+  <div class="relative z-10 w-full max-w-2xl px-6 flex items-center justify-center transition-transform duration-300 ease-out" id="sculpt-plaque" style="transform: perspective(1000px) rotateY(-8deg) rotateX(4deg);">
+    <div class="relative w-full aspect-[4/3] max-h-[520px] rounded-lg overflow-hidden flex items-center justify-center shadow-[0_24px_50px_rgba(0,0,0,0.9)]">
+      <img class="w-full h-full object-contain filter contrast-110 drop-shadow-[0_20px_25px_rgba(0,0,0,0.6)]" id="mesh-image" alt="3D scan bas-relief mesh of hooded cloaked figurine resting on grid plane" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3dWGuTyaDt3pzJRVK94zAVy0lftdpCvTC140vdcdiDGpHL-vZMj3tAMkiMVWQwoEc0gKIdMTVwTvUrEeUG9lR5HzLkvUCaEJj0JEz6FZTcPlNxI4go6t7T6wMoyajZhaqh2-Ne5Fo49zYRVB8X00DywDN-osh_A_TRwChoFeFsINPXDbMbW-vDbxQPhqxkmuel_R_d7mBRVasxmybp6KPjhVdpbfFfW63_DubxAQM03CZUhxtNH5mwv8pgnjk3ZgA-A" style="clip-path: inset(18% 30% 12% 10%); transform: scale(1.55);">
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Viewport Controls: Undo & Redo (bottom right matching IMG_1134.PNG) -->
+<div class="relative z-20 px-space-md py-space-sm flex items-center justify-end gap-space-sm">
+  <button aria-label="Undo" class="w-11 h-11 rounded-xl bg-[#26282d]/90 hover:bg-[#34373e] text-inverse-on-surface flex items-center justify-center shadow-lg active:scale-90 transition-transform" id="btn-undo" type="button">
+    <span class="material-symbols-outlined text-[20px]">undo</span>
+  </button>
+  <button aria-label="Redo" class="w-11 h-11 rounded-xl bg-[#26282d]/90 hover:bg-[#34373e] text-inverse-on-surface flex items-center justify-center shadow-lg active:scale-90 transition-transform" id="btn-redo" type="button">
+    <span class="material-symbols-outlined text-[20px]">redo</span>
+  </button>
+</div></div>
+<!-- RIGHT COLUMN: Frosted Studio Dark Control Inspector (Lg 4 cols ~ 30-33%) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<!-- Studio Frosted Main Configuration Card -->
+<div class="w-full rounded-2xl bg-surface-container-high/20 backdrop-blur-2xl p-space-md shadow-2xl flex flex-col gap-space-md" style="background-color: rgb(30, 32, 36);">
+<!-- Source Capture Preview Thumbnail Card -->
+<div class="w-full relative rounded-xl overflow-hidden bg-inverse-surface shadow-md aspect-[16/9] group"><img class="w-full h-full object-cover rounded-xl border border-white/10" id="source-photo-thumb" alt="Reference captured photo of hooded figurine on desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3dWGuTyaDt3pzJRVK94zAVy0lftdpCvTC140vdcdiDGpHL-vZMj3tAMkiMVWQwoEc0gKIdMTVwTvUrEeUG9lR5HzLkvUCaEJj0JEz6FZTcPlNxI4go6t7T6wMoyajZhaqh2-Ne5Fo49zYRVB8X00DywDN-osh_A_TRwChoFeFsINPXDbMbW-vDbxQPhqxkmuel_R_d7mBRVasxmybp6KPjhVdpbfFfW63_DubxAQM03CZUhxtNH5mwv8pgnjk3ZgA-A" style="clip-path: inset(6% 1% 72% 72%); transform: scale(3.5); transform-origin: 85% 15%;"></div>
+<!-- Mode Switcher: Simple vs Advanced -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-inverse-on-surface">Mode</span>
+<span class="font-label-sm text-label-sm text-secondary-fixed tracking-wide">PRECISION ENGINE</span>
+</div>
+<div class="w-full grid grid-cols-2 p-1 rounded-xl bg-inverse-surface/70 shadow-inner" style="background-color: rgb(18, 19, 22);">
+<button class="py-space-xs rounded-lg text-inverse-on-surface/70 hover:text-inverse-on-surface font-headline-sm text-body-md transition-all" id="mode-simple-btn" type="button">Simple</button>
+<button class="py-space-xs rounded-lg bg-surface-container-high/50 text-inverse-on-surface font-headline-sm text-body-md shadow transition-all" id="mode-adv-btn" type="button" style="background-color: rgb(63, 67, 74);">Advanced</button>
+</div>
+</div>
+<!-- Separator Line with Specular Gradient -->
+<div class="w-full h-[1px] bg-gradient-to-r from-transparent via-surface-container-highest/30 to-transparent"></div>
+<!-- Configuration Parameter Controls -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-inverse-on-surface tracking-tight">Configuration</span>
+<span class="font-label-sm text-label-sm text-outline-variant font-mono">P-CURVE v2.4</span>
+</div>
+<!-- Slider 1: Depth Slider -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-body-md text-body-md text-inverse-on-surface/90">
+<div class="flex items-center gap-1.5">
+<span class="">Depth</span>
+<span class="material-symbols-outlined text-[15px] text-outline-variant cursor-help" title="Controls physical relief extrusion thickness along the Z-axis in millimeters">info</span>
+</div>
+<div class="h-6 px-space-sm rounded bg-inverse-surface/80 flex items-center justify-center">
+<span class="font-label-md text-label-md text-secondary-fixed" id="depth-val-badge">40 mm</span>
+</div>
+</div>
+<!-- Interactive Custom Range Track -->
+<div class="relative w-full flex items-center h-8">
+<input class="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-inverse-surface accent-secondary-container focus:outline-none" id="slider-depth" max="80" min="10" type="range" value="40">
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-outline-variant -mt-2">
+<span class="">10 mm</span>
+<span class="">40 mm (Default)</span>
+<span class="">80 mm</span>
+</div>
+</div>
+<!-- Slider 2: Smoothness Slider -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-body-md text-body-md text-inverse-on-surface/90">
+<div class="flex items-center gap-1.5">
+<span class="">Smoothness</span>
+<span class="material-symbols-outlined text-[15px] text-outline-variant cursor-help" title="Laplacian mesh smoothing iterations to eliminate sensor lidar noise">info</span>
+</div>
+<div class="h-6 px-space-sm rounded bg-inverse-surface/80 flex items-center justify-center">
+<span class="font-label-md text-label-md text-inverse-on-surface" id="smooth-val-badge">100%</span>
+</div>
+</div>
+<div class="relative w-full flex items-center h-8">
+<input class="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-inverse-surface accent-secondary-container focus:outline-none" id="slider-smoothness" max="100" min="0" type="range" value="100">
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-outline-variant -mt-2">
+<span class="">Raw LiDAR (0%)</span>
+<span class="">Silky (100%)</span>
+</div>
+</div>
+<!-- Slider 3: Texture Extrusion Slider -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-body-md text-body-md text-inverse-on-surface/90">
+<div class="flex items-center gap-1.5">
+<span class="">Texture</span>
+<span class="material-symbols-outlined text-[15px] text-outline-variant cursor-help" title="Enhance high frequency luminance normal mapping">info</span>
+</div>
+<div class="h-6 px-space-sm rounded bg-inverse-surface/80 flex items-center justify-center">
+<span class="font-label-md text-label-md text-inverse-on-surface" id="texture-val-badge">100%</span>
+</div>
+</div>
+<div class="relative w-full flex items-center h-8">
+<input class="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-inverse-surface accent-secondary-container focus:outline-none" id="slider-texture" max="100" min="0" type="range" value="100">
+</div>
+</div>
+<!-- Slider 4: Outline Silhouette Slider -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-body-md text-body-md text-inverse-on-surface/90">
+<div class="flex items-center gap-1.5">
+<span class="">Outline</span>
+<span class="material-symbols-outlined text-[15px] text-outline-variant cursor-help" title="Boundary edge ridge sharpening">info</span>
+</div>
+<div class="h-6 px-space-sm rounded bg-inverse-surface/80 flex items-center justify-center">
+<span class="font-label-md text-label-md text-inverse-on-surface" id="outline-val-badge">0%</span>
+</div>
+</div>
+<div class="relative w-full flex items-center h-8">
+<input class="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-inverse-surface accent-secondary-container focus:outline-none" id="slider-outline" max="100" min="0" type="range" value="0">
+</div>
+</div>
+</div>
+<!-- Quick Shading & Base Infill Selector (Advanced sub-panel) -->
+<div class="p-space-sm rounded-xl bg-inverse-surface/60 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline-variant uppercase tracking-wider">Base Material</span>
+<div class="flex items-center gap-space-xs">
+<button class="w-6 h-6 rounded-full bg-surface-container-lowest shadow" title="Alabaster White Plaster"></button>
+<button class="w-6 h-6 rounded-full bg-tertiary-container shadow opacity-60 hover:opacity-100" title="Matte Charcoal"></button>
+<button class="w-6 h-6 rounded-full bg-primary-fixed-dim shadow opacity-60 hover:opacity-100" title="Arcade Neon Mint"></button>
+</div>
+</div>
+<!-- Bottom Action: iOS Vibrant Blue Export & QR Button -->
+<div class="w-full pt-space-xs">
+<button class="w-full h-14 rounded-xl bg-secondary-container hover:bg-secondary text-on-secondary-container font-headline-sm text-headline-sm flex items-center justify-center gap-space-sm shadow-[0_10px_25px_rgba(0,115,224,0.4)] transition-all transform active:scale-[0.98]" id="btn-export-kiosk" type="button" style="background-color: rgb(0, 122, 255); border-radius: 12px;"><span class="font-headline-sm text-headline-sm font-semibold text-white">Export</span></button>
+<p class="text-center font-label-sm text-label-sm text-outline-variant mt-2">Ready for STL, OBJ 3D Print &amp; WebGL AR Viewer</p>
+</div>
+</div>
+<!-- System Diagnostics Mini Panel (LiDAR Pipeline Feed) -->
+<div class="w-full px-space-md py-space-sm rounded-xl bg-surface-container-high/10 backdrop-blur-md flex items-center justify-between text-outline-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="">GPU KERNEL: METAL 3.2 ACTIVE</span>
+</div>
+<span class="font-mono">LATENCY: 8.4MS</span>
+</div>
+</div>
+</div>
+<!-- Export Modal Overlay (Hidden by Default) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/80 backdrop-blur-xl hidden flex items-center justify-center p-margin" id="export-modal">
+<div class="w-full max-w-md rounded-2xl bg-surface-container-lowest p-space-lg text-on-surface shadow-2xl flex flex-col items-center text-center gap-space-md animate-in fade-in zoom-in-95 duration-200">
+<div class="w-14 h-14 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[32px]">check_circle</span>
+</div>
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">3D Sculpture Ready!</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Scan the QR code with your iPhone to inspect in AR or download the print-ready mesh files.</p>
+</div>
+<!-- Simulated Stylized QR Code with Depth Lab Emblem -->
+<div class="p-space-md rounded-xl bg-surface-container shadow-inner flex flex-col items-center">
+<div class="w-48 h-48 bg-surface-container-lowest p-3 rounded-lg shadow-sm flex items-center justify-center relative">
+<svg class="w-full h-full text-inverse-surface" fill="currentColor" viewBox="0 0 100 100">
+<!-- QR Patterns simulated -->
+<rect fill="none" height="25" rx="3" stroke="currentColor" stroke-width="4" width="25" x="5" y="5"></rect>
+<rect height="13" width="13" x="11" y="11"></rect>
+<rect fill="none" height="25" rx="3" stroke="currentColor" stroke-width="4" width="25" x="70" y="5"></rect>
+<rect height="13" width="13" x="76" y="11"></rect>
+<rect fill="none" height="25" rx="3" stroke="currentColor" stroke-width="4" width="25" x="5" y="70"></rect>
+<rect height="13" width="13" x="11" y="76"></rect>
+<!-- Matrix dots -->
+<circle cx="45" cy="15" r="3"></circle>
+<circle cx="55" cy="20" r="3"></circle>
+<circle cx="40" cy="30" r="3"></circle>
+<circle cx="60" cy="35" r="3"></circle>
+<circle class="text-secondary" cx="50" cy="50" r="5"></circle>
+<circle cx="20" cy="50" r="3"></circle>
+<circle cx="35" cy="55" r="3"></circle>
+<circle cx="65" cy="55" r="3"></circle>
+<circle cx="80" cy="50" r="3"></circle>
+<circle cx="45" cy="70" r="3"></circle>
+<circle cx="60" cy="80" r="3"></circle>
+<circle cx="75" cy="75" r="3"></circle>
+<circle cx="90" cy="90" r="3"></circle>
+<circle cx="35" cy="85" r="3"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="w-8 h-8 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center text-xs font-bold font-label-sm shadow">3D</span>
+</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant mt-2 font-mono">CODE: SCULPT-904-CAD</span>
+</div>
+<div class="flex items-center gap-space-sm w-full">
+<button class="w-1/2 h-12 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-body-md transition-all" id="btn-close-modal" type="button">Close</button>
+<button class="w-1/2 h-12 rounded-xl bg-primary hover:bg-on-primary-container text-on-primary font-headline-sm text-body-md shadow-md transition-all" id="btn-print-kiosk" type="button">Send to Printer</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Client-Side Interactive Behaviors (Orbit gesture, Sliders, Glitch Engine, Modal) -->
+<script>
+    (function initDepthSculptor() {
+      // 1. Periodic Glitch Pulse (2000ms cadence, 120ms burst)
+      const glitchOverlay = document.getElementById('glitch-layer');
+      const sculptPlaque = document.getElementById('sculpt-plaque');
+      
+      setInterval(() => {
+        if (!glitchOverlay || !sculptPlaque) return;
+        // Trigger glitch burst
+        glitchOverlay.classList.remove('opacity-0');
+        glitchOverlay.classList.add('opacity-90', 'periodic-glitch-active');
+        sculptPlaque.style.filter = 'drop-shadow(3px 0px 0px rgba(0, 255, 255, 0.45)) drop-shadow(-3px 0px 0px rgba(255, 0, 85, 0.45))';
+        
+        setTimeout(() => {
+          glitchOverlay.classList.remove('opacity-90', 'periodic-glitch-active');
+          glitchOverlay.classList.add('opacity-0');
+          sculptPlaque.style.filter = 'none';
+        }, 120);
+      }, 2000);
+
+      // 2. Interactive Bas-Relief Sliders
+      const sliderDepth = document.getElementById('slider-depth');
+      const depthValBadge = document.getElementById('depth-val-badge');
+      const telemetryDepth = document.getElementById('telemetry-depth');
+
+      const sliderSmooth = document.getElementById('slider-smoothness');
+      const smoothValBadge = document.getElementById('smooth-val-badge');
+
+      const sliderTexture = document.getElementById('slider-texture');
+      const textureValBadge = document.getElementById('texture-val-badge');
+
+      const sliderOutline = document.getElementById('slider-outline');
+      const outlineValBadge = document.getElementById('outline-val-badge');
+
+      const meshImg = document.getElementById('mesh-image');
+
+      function updateMeshAppearance() {
+        if (!sliderDepth || !meshImg) return;
+        const depthVal = sliderDepth.value;
+        const smoothVal = sliderSmooth.value;
+        const textureVal = sliderTexture.value;
+        const outlineVal = sliderOutline.value;
+
+        depthValBadge.textContent = depthVal + ' mm';
+        telemetryDepth.textContent = parseFloat(depthVal * 1.075).toFixed(1);
+        smoothValBadge.textContent = smoothVal + '%';
+        textureValBadge.textContent = textureVal + '%';
+        outlineValBadge.textContent = outlineVal + '%';
+
+        // Translate slider values into dynamic visual bas-relief CSS filter properties
+        const blurAmount = (100 - smoothVal) * 0.02;
+        const contrastVal = 100 + (textureVal * 0.35) + (outlineVal * 0.4);
+        const depthShadowOffset = depthVal * 0.45;
+
+        meshImg.style.filter = `blur(${blurAmount}px) contrast(${contrastVal}%) brightness(105%) drop-shadow(0px ${depthShadowOffset}px ${depthVal * 0.6}px rgba(0,0,0,0.55))`;
+      }
+
+      [sliderDepth, sliderSmooth, sliderTexture, sliderOutline].forEach(slider => {
+        if (slider) slider.addEventListener('input', updateMeshAppearance);
+      });
+
+      // 3. Viewport Interactive Drag Orbit Rotation (Mouse & Touch iPad support)
+      const viewportCanvas = document.getElementById('mesh-viewport-canvas');
+      let isDragging = false;
+      let startX = 0, startY = 0;
+      let rotY = -11, rotX = 9;
+
+      if (viewportCanvas && sculptPlaque) {
+        const startDrag = (x, y) => {
+          isDragging = true;
+          startX = x;
+          startY = y;
+        };
+
+        const moveDrag = (x, y) => {
+          if (!isDragging) return;
+          const deltaX = (x - startX) * 0.3;
+          const deltaY = (y - startY) * -0.3;
+          rotY = Math.max(-45, Math.min(45, rotY + deltaX));
+          rotX = Math.max(-30, Math.min(40, rotX + deltaY));
+          sculptPlaque.style.transform = `perspective(1000px) rotateY(${rotY}deg) rotateX(${rotX}deg) scale3d(1, 1, 1)`;
+          startX = x;
+          startY = y;
+        };
+
+        const endDrag = () => { isDragging = false; };
+
+        viewportCanvas.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
+        window.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
+        window.addEventListener('mouseup', endDrag);
+
+        viewportCanvas.addEventListener('touchstart', (e) => {
+          if (e.touches.length === 1) startDrag(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
+        window.addEventListener('touchmove', (e) => {
+          if (e.touches.length === 1) moveDrag(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
+        window.addEventListener('touchend', endDrag);
+
+        // Center / Reset View
+        const resetBtn = document.getElementById('btn-reset-view');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', () => {
+            rotY = 0;
+            rotX = 0;
+            sculptPlaque.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)`;
+          });
+        }
+
+        // Camera presets
+        const btnPerspective = document.getElementById('cam-perspective');
+        const btnFront = document.getElementById('cam-front');
+        const btnTop = document.getElementById('cam-top');
+        const wireframeOverlay = document.getElementById('wireframe-overlay');
+        const btnWireframe = document.getElementById('btn-wireframe');
+
+        if (btnPerspective) {
+          btnPerspective.addEventListener('click', () => {
+            rotY = -11; rotX = 9;
+            sculptPlaque.style.transform = `perspective(1000px) rotateY(-11deg) rotateX(9deg) scale3d(1, 1, 1)`;
+          });
+        }
+        if (btnFront) {
+          btnFront.addEventListener('click', () => {
+            rotY = 0; rotX = 0;
+            sculptPlaque.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)`;
+          });
+        }
+        if (btnTop) {
+          btnTop.addEventListener('click', () => {
+            rotY = 0; rotX = 65;
+            sculptPlaque.style.transform = `perspective(1000px) rotateY(0deg) rotateX(65deg) scale3d(1, 1, 1)`;
+          });
+        }
+        if (btnWireframe && wireframeOverlay) {
+          btnWireframe.addEventListener('click', () => {
+            wireframeOverlay.classList.toggle('opacity-50');
+            wireframeOverlay.classList.toggle('opacity-15');
+          });
+        }
+      }
+
+      // 4. Undo / Redo Interactive State Feedback
+      const btnUndo = document.getElementById('btn-undo');
+      const btnRedo = document.getElementById('btn-redo');
+      if (btnUndo && btnRedo) {
+        btnUndo.addEventListener('click', () => {
+          sliderDepth.value = 25;
+          sliderSmooth.value = 80;
+          updateMeshAppearance();
+        });
+        btnRedo.addEventListener('click', () => {
+          sliderDepth.value = 40;
+          sliderSmooth.value = 100;
+          updateMeshAppearance();
+        });
+      }
+
+      // 5. Export Modal Workflow
+      const exportBtn = document.getElementById('btn-export-kiosk');
+      const exportModal = document.getElementById('export-modal');
+      const closeModalBtn = document.getElementById('btn-close-modal');
+      const printKioskBtn = document.getElementById('btn-print-kiosk');
+
+      if (exportBtn && exportModal && closeModalBtn) {
+        exportBtn.addEventListener('click', () => {
+          exportModal.classList.remove('hidden');
+        });
+        closeModalBtn.addEventListener('click', () => {
+          exportModal.classList.add('hidden');
+        });
+        if (printKioskBtn) {
+          printKioskBtn.addEventListener('click', () => {
+            printKioskBtn.textContent = 'Spooling G-Code...';
+            setTimeout(() => {
+              printKioskBtn.textContent = 'Sent to 3D Print Queue!';
+              setTimeout(() => exportModal.classList.add('hidden'), 900);
+            }, 700);
+          });
+        }
+      }
+
+      // 6. Simple vs Advanced Mode Toggle
+      const simpleBtn = document.getElementById('mode-simple-btn');
+      const advBtn = document.getElementById('mode-adv-btn');
+      if (simpleBtn && advBtn) {
+        simpleBtn.addEventListener('click', () => {
+          simpleBtn.classList.add('bg-surface-container-high/50', 'shadow');
+          simpleBtn.classList.remove('text-inverse-on-surface/70');
+          advBtn.classList.remove('bg-surface-container-high/50', 'shadow');
+          advBtn.classList.add('text-inverse-on-surface/70');
+        });
+        advBtn.addEventListener('click', () => {
+          advBtn.classList.add('bg-surface-container-high/50', 'shadow');
+          advBtn.classList.remove('text-inverse-on-surface/70');
+          simpleBtn.classList.remove('bg-surface-container-high/50', 'shadow');
+          simpleBtn.classList.add('text-inverse-on-surface/70');
+        });
+      }
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-low py-space-md"><div class="w-full px-margin flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-label-sm text-label-sm"><div class="flex items-center gap-space-sm"><span class="">STUDIO / DOODLE DUAL PIPELINE</span><span class="">·</span><span class="">2360 × 1640 PX NATIVE RETINA</span><span class="">·</span><span class="">GLITCH PULSE: 2000MS</span></div><div class="font-label-md text-label-md text-outline">ARCADE DEPTH LAB © 2025</div></div></footer>
+
+</body></html>
