@@ -152,8 +152,13 @@
 <!-- SCREEN: 3D STUDIO -->
 <section id="screen-depth" class="screen pt-12">
   <div class="w-full h-full flex flex-col bg-[#121212] text-white overflow-hidden">
-    <div class="flex items-center justify-between px-4 py-2 bg-black/40 backdrop-blur">
-      <div class="flex items-center gap-2"><button id="btn-depth-back" class="px-3 py-1.5 rounded-full bg-white/10 font-mono text-[11px]">← Back</button><span class="font-mono text-[11px] font-bold">3D DEPTH SCULPTURE STUDIO</span><span id="depth-model-badge" class="px-2 py-0.5 rounded-full bg-white/10 font-mono text-[10px]">Depth Anything — loading…</span></div>
+      <div class="flex items-center justify-between px-4 py-2 bg-black/40 backdrop-blur">
+      <div class="flex items-center gap-2">
+        <button id="btn-depth-back" class="px-3 py-1.5 rounded-full bg-white/10 font-mono text-[11px]">← Back</button>
+        <span class="font-mono text-[11px] font-bold">3D DEPTH SCULPTURE STUDIO</span>
+        <button id="btn-download-model" class="px-3 py-1 rounded-full bg-[#0073e0] text-white font-mono text-[10px] font-bold shadow hover:bg-[#005ab3] transition-colors">📥 Unduh Model ML (~110MB)</button>
+        <span id="depth-model-badge" class="px-2 py-0.5 rounded-full bg-white/10 font-mono text-[10px]">Menunggu Unduhan…</span>
+      </div>
       <div class="flex gap-1 bg-white/10 p-1 rounded-xl"><button id="cam-perspective" class="px-3 py-1 rounded-lg bg-white/20 font-mono text-[10px]">PERSPECTIVE</button><button id="cam-front" class="px-3 py-1 rounded-lg font-mono text-[10px] opacity-60">FRONT</button><button id="cam-top" class="px-3 py-1 rounded-lg font-mono text-[10px] opacity-60">TOP</button><button id="btn-wireframe" class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">grid_4x4</span></button></div>
     </div>
     <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-4 p-4 overflow-auto">

@@ -1,4 +1,4 @@
-import { estimateDepth, initThree, applyDepth, setDepthScale, setRoughness, setWireframe, snapshot, getDepthCanvas } from './depth3d.js';
+import { estimateDepth, initThree, applyDepth, setDepthScale, setRoughness, setWireframe, snapshot, getDepthCanvas, getEstimator } from './depth3d.js';
 const SCREENS=['screen-mode','screen-classic','screen-template','screen-depth','screen-export'];
 const STRIP_W=1200, STRIP_H=3600, PHOTO_W=1000, PHOTO_H=750, PHOTO_X=100, PHOTO_Y=[100,920,1740,2560];
 let mode='classic', stream=null, shots=[], stripBase64=null, depthColorSrc=null, depthMapCanvas=null, threeReady=false, selectedTpl=1, frameColor='#fffdf9', stampText='DEC 19 \u2022 Arc Studio Tokyo \u2022 Booth #04', isColor=true, uploading=false, countdownLock=false;
@@ -126,10 +126,30 @@ $('door-spatial')?.addEventListener('click', async()=>{
   $('depth-capture-box').classList.remove('hidden'); $('depth-capture-box').style.display='flex';
   $('depth-viewport-box').classList.add('hidden'); $('depth-viewport-box').style.display='none';
   $('depth-controls').classList.add('hidden'); $('depth-source-card').classList.add('hidden');
-  $('depth-status').textContent='Tap to capture \u2022 ML depth will run';
-  $('depth-model-badge').textContent='Depth Anything \u2014 loading\u2026';
-  estimateDepth('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=',()=>{}).catch(()=>{});
+  $('depth-status').textContent='Siap capture setelah model terunduh';
   await startCamera($('video-depth'));
+});
+
+$('btn-download-model')?.addEventListener('click', async()=>{
+  const btn = $('btn-download-model');
+  btn.disabled = true;
+  btn.classList.add('opacity-50', 'cursor-not-allowed');
+  btn.textContent = '⏳ Mengunduh...';
+  try {
+    await getEstimator(t => {
+      $('depth-model-badge').textContent = t;
+      btn.textContent = t.includes('%') ? `⏳ ${t}` : '⏳ Mengunduh...';
+    });
+    btn.textContent = '✅ Model Siap';
+    btn.classList.remove('bg-[#0073e0]', 'hover:bg-[#005ab3]');
+    btn.classList.add('bg-[#00d26a]', 'text-black');
+    $('depth-status').textContent = 'Model siap! Tekan Capture.';
+  } catch(e) {
+    btn.disabled = false;
+    btn.classList.remove('opacity-50', 'cursor-not-allowed');
+    btn.textContent = '❌ Gagal, Coba Lagi';
+    $('depth-model-badge').textContent = 'Error: ' + e.message;
+  }
 });
 $('btn-home')?.addEventListener('click',()=>{ if(stream) stream.getTracks().forEach(t=>t.stop()); show('screen-mode');});
 $('btn-classic-back')?.addEventListener('click',()=>show('screen-mode'));
