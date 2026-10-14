@@ -23,17 +23,27 @@ export default async function handler(req, res) {
   }
 
   try {
+    const matches = image.match(/^data:(image\/[a-zA-Z0-9.+]+);base64,/);
+    const contentType = matches ? matches[1] : 'image/jpeg';
+    const ext = contentType === 'image/png' ? 'png' : 'jpg';
+
     const buffer = Buffer.from(image.split(',')[1], 'base64');
-    const key = `photobooth/${Date.now()}.jpg`;
+    const key = `photobooth/${Date.now()}.${ext}`;
 
     await s3.send(new PutObjectCommand({
       Bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME,
       Key: key,
       Body: buffer,
-      ContentType: 'image/jpeg',
+      ContentType: contentType,
     }));
 
-    return res.status(200).json({ success: true, url: `${process.env.CLOUDFLARE_R2_PUBLIC_URL}/${key}` });
+    let cleanBaseUrl = (process.env.CLOUDFLARE_R2_PUBLIC_URL || '').trim().replace(/\/+$/, '');
+    if (cleanBaseUrl && !/^https?:\/\//i.test(cleanBaseUrl)) {
+      cleanBaseUrl = `https://${cleanBaseUrl}`;
+    }
+    const publicUrl = `${cleanBaseUrl}/${key}`;
+
+    return res.status(200).json({ success: true, url: publicUrl, publicUrl });
   } catch (err) {
     console.error('R2 upload error:', err);
     return res.status(500).json({ error: 'Upload gagal', details: err.message });
