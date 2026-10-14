@@ -1,4 +1,4 @@
-import { estimateDepth, initThree, applyDepth, setDepthScale, setRoughness, setWireframe, snapshot, getDepthCanvas, getEstimator } from './depth3d.js';
+import { estimateDepth, initThree, applyDepth, setDepthScale, setRoughness, setWireframe, snapshot, getDepthCanvas, getEstimator, setTextureVisible } from './depth3d.js';
 const SCREENS=['screen-mode','screen-classic','screen-template','screen-depth','screen-export'];
 const STRIP_W=1200, STRIP_H=3600, PHOTO_W=1000, PHOTO_H=750, PHOTO_X=100, PHOTO_Y=[100,920,1740,2560];
 let mode='classic', stream=null, shots=[], stripBase64=null, depthColorSrc=null, depthMapCanvas=null, threeReady=false, selectedTpl=1, frameColor='#fffdf9', stampText='DEC 19 \u2022 Arc Studio Tokyo \u2022 Booth #04', isColor=true, uploading=false, countdownLock=false;
@@ -202,7 +202,10 @@ $('btn-depth-shutter')?.addEventListener('click', async()=>{
     $('depth-status').textContent='Depth map ready \u2014 rendering 3D...';
     const cont=$('three-container');
     if(!threeReady){ initThree(cont); threeReady=true; }
-    await applyDepth(depthColorSrc, depthMapCanvas, 40);
+    // Tactura style default: clay/plaster sculpture relief (showTexture = false)
+    await applyDepth(depthColorSrc, depthMapCanvas, 40, false);
+    $('slider-texture').value = 0;
+    $('texture-val-badge').textContent = 'Clay';
     $('depth-capture-box').style.display='none';
     const vp=$('depth-viewport-box'); vp.classList.remove('hidden'); vp.style.display='flex';
     $('depth-controls').classList.remove('hidden');
@@ -220,7 +223,11 @@ $('btn-depth-retake')?.addEventListener('click',()=>{
 $('btn-depth-reset-view')?.addEventListener('click',()=>{ const c=$('three-container'); if(c&&c._resetView) c._resetView(); });
 $('slider-depth')?.addEventListener('input',e=>{ const v=e.target.value; $('depth-val-badge').textContent=v+' mm'; $('telemetry-depth').textContent=(v*1.075).toFixed(1); setDepthScale(Number(v)); });
 $('slider-smoothness')?.addEventListener('input',e=>{ $('smooth-val-badge').textContent=e.target.value+'%'; setRoughness(Number(e.target.value)); });
-$('slider-texture')?.addEventListener('input',e=>{ $('texture-val-badge').textContent=e.target.value+'%'; const img=document.querySelector('#three-container canvas'); if(img) img.style.filter=`contrast(${100+Number(e.target.value)*0.35}%)`; });
+$('slider-texture')?.addEventListener('input',e=>{ 
+  const val = Number(e.target.value);
+  $('texture-val-badge').textContent = val > 50 ? 'Photo' : 'Clay';
+  setTextureVisible(val > 50);
+});
 $('slider-outline')?.addEventListener('input',e=>{ $('outline-val-badge').textContent=e.target.value+'%'; setWireframe(Number(e.target.value)>50); });
 $('cam-perspective')?.addEventListener('click',()=>{ const c=$('three-container'); if(c&&c._resetView) c._resetView(); });
 $('cam-front')?.addEventListener('click',()=>{ const c=$('three-container'); if(c&&c._resetView) c._resetView(); });

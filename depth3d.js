@@ -11,8 +11,55 @@ let depthCanvas, depthCtx;
 let currentImageURL = null;
 
 const DEPTH_W = 256, DEPTH_H = 256;
-// ponytail: cap displacement to avoid over-distortion. raise if real-depth export needed.
-const MAX_DISPLACE = 0.45;
+const MAX_DISPLACE = 0.55;
+
+// Solid bas-relief slab: subdivided front face (displaced by depthmap) + back + 4 side walls.
+// UVs only matter on the front grid; back/sides render clay (map=null) so distortion is irrelevant.
+function createReliefSlab(width = 1.6, height = 1.2, baseDepth = 0.12, segX = 200, segY = 200) {
+  const geom = new THREE.BufferGeometry();
+  const halfW = width / 2, halfH = height / 2;
+  const positions = [], uvs = [], indices = [];
+  const cols = segX + 1, rows = segY + 1;
+
+  for (let iy = 0; iy < rows; iy++) {
+    const v = iy / segY, y = halfH - v * height;
+    for (let ix = 0; ix < cols; ix++) {
+      const u = ix / segX, x = -halfW + u * width;
+      positions.push(x, y, 0);
+      uvs.push(u, 1 - v);
+    }
+  }
+  for (let iy = 0; iy < segY; iy++) {
+    for (let ix = 0; ix < segX; ix++) {
+      const a = iy * cols + ix, b = (iy + 1) * cols + ix;
+      const c = (iy + 1) * cols + (ix + 1), d = iy * cols + (ix + 1);
+      indices.push(a, b, d, b, c, d);
+    }
+  }
+
+  const bl = 0, br = segX, tr = segY * cols + segX, tl = segY * cols;
+  const baseZ = -baseDepth;
+  const backIdx = positions.length / 3;
+  positions.push(-halfW, -halfH, baseZ, halfW, -halfH, baseZ, halfW, halfH, baseZ, -halfW, halfH, baseZ);
+  uvs.push(0, 0, 1, 0, 1, 1, 0, 1);
+  indices.push(backIdx, backIdx + 2, backIdx + 1, backIdx, backIdx + 3, backIdx + 2);
+
+  const wall = (f0, f1, b1, b0) => {
+    const b = positions.length / 3;
+    [f0, f1, b1, b0].forEach(vi => { positions.push(positions[vi*3], positions[vi*3+1], positions[vi*3+2]); uvs.push(uvs[vi*2], uvs[vi*2+1]); });
+    indices.push(b, b + 2, b + 1, b, b + 3, b + 2);
+  };
+  wall(bl, br, backIdx + 1, backIdx);
+  wall(br, tr, backIdx + 2, backIdx + 1);
+  wall(tr, tl, backIdx + 3, backIdx + 2);
+  wall(tl, bl, backIdx, backIdx + 3);
+
+  geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geom.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+  geom.setIndex(indices);
+  geom.computeVertexNormals();
+  return geom;
+}
 
 // ponytail: max 384x384 resize for web ML speed ceiling. upgrade if WebGPU pipeline added.
 function resizeForInference(src, maxDim = 384) {
@@ -140,34 +187,58 @@ function lumaDepth(src){
 export function initThree(container, onReady){
   const w = container.clientWidth, h = container.clientHeight;
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x121316);
-  camera = new THREE.PerspectiveCamera(45, w/h, 0.1, 1000);
-  camera.position.set(0,0.8,2.2);
-  camera.lookAt(0,0,0);
+  scene.background = new THREE.Color(0x1a1b1e); // Studio dark matte
+  camera = new THREE.PerspectiveCamera(40, w/h, 0.1, 1000);
+  camera.position.set(0, 0.5, 2.5);
+  camera.lookAt(0, 0, 0);
   renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true, alpha:true});
-  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-  renderer.setSize(w,h);
-  renderer.shadowMap.enabled=true;
-  container.innerHTML=''; container.appendChild(renderer.domElement);
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(w, h);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  container.innerHTML = ''; 
+  container.appendChild(renderer.domElement);
 
-  geometry = new THREE.PlaneGeometry(1.6, 1.2, 256, 256);
-  material = new THREE.MeshStandardMaterial({color:0xffffff, displacementScale:0.2, roughness:0.4, metalness:0.0, side:THREE.DoubleSide});
+  // Solid bas-relief sculpture slab
+  geometry = createReliefSlab(1.6, 1.2, 0.12, 200, 200);
+
+  // Tactura-style plaster/clay sculpture material
+  material = new THREE.MeshStandardMaterial({
+    color: 0xefede8, // Plaster stone/matte clay finish
+    roughness: 0.68,
+    metalness: 0.04,
+    displacementScale: 0.28,
+    side: THREE.DoubleSide
+  });
+
   mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.x = -0.18;
-  mesh.castShadow=true; mesh.receiveShadow=true;
+  mesh.rotation.x = -0.12;
+  mesh.castShadow = true; 
+  mesh.receiveShadow = true;
   scene.add(mesh);
 
-  const amb=new THREE.AmbientLight(0xffffff, 0.5); scene.add(amb);
-  light=new THREE.DirectionalLight(0xffffff, 1.5); 
-  light.position.set(1.5, 2.0, 1.8); 
-  light.castShadow=true; 
-  light.shadow.mapSize.width = 1024;
-  light.shadow.mapSize.height = 1024;
-  light.shadow.bias = -0.0005;
-  scene.add(light);
+  // Studio 3-point lighting setup for crisp 3D relief contours
+  const keyLight = new THREE.DirectionalLight(0xfff8ed, 1.8);
+  keyLight.position.set(2.0, 2.8, 2.2);
+  keyLight.castShadow = true;
+  keyLight.shadow.mapSize.width = 2048;
+  keyLight.shadow.mapSize.height = 2048;
+  keyLight.shadow.bias = -0.0003;
+  scene.add(keyLight);
 
+  const fillLight = new THREE.DirectionalLight(0xbad4ff, 0.7);
+  fillLight.position.set(-2.0, 1.0, 1.8);
+  scene.add(fillLight);
 
-  const grid=new THREE.GridHelper(4,20,0xffffff,0x333333); grid.position.y=-0.62; grid.material.opacity=0.12; grid.material.transparent=true; scene.add(grid);
+  const ambient = new THREE.AmbientLight(0xffffff, 0.65);
+  scene.add(ambient);
+
+  // Studio floor grid like tactile 3D CAD preview
+  const grid = new THREE.GridHelper(5, 25, 0x666666, 0x2c2d30);
+  grid.position.y = -0.7;
+  grid.material.opacity = 0.35;
+  grid.material.transparent = true;
+  scene.add(grid);
 
   let dragging=false, sx=0, sy=0, ry=0, rx=-0.18;
   const el=renderer.domElement;
@@ -190,14 +261,17 @@ export function initThree(container, onReady){
 
 function animate(){ rafId=requestAnimationFrame(animate); if(renderer&&scene&&camera) renderer.render(scene,camera); }
 
-export async function applyDepth(colorSrc, depthSrcCanvas, depthMm){
+export async function applyDepth(colorSrc, depthSrcCanvas, depthMm, showTexture = false){
   currentImageURL = colorSrc;
   const loader=new THREE.TextureLoader();
   
   if (texColor) { texColor.dispose(); }
   texColor = await new Promise((res,rej)=>loader.load(colorSrc, res, undefined, rej));
   texColor.colorSpace = THREE.SRGBColorSpace;
-  material.map = texColor; 
+  
+  // By default in Tactura/Sculpture Studio, use solid clay/plaster to highlight 3D reliefs
+  material.map = showTexture ? texColor : null; 
+  material.needsUpdate = true;
   
   if (texDepth) { texDepth.dispose(); }
   const dTex = new THREE.CanvasTexture(depthSrcCanvas);
@@ -208,6 +282,12 @@ export async function applyDepth(colorSrc, depthSrcCanvas, depthMm){
   
   material.needsUpdate = true;
   geometry.computeVertexNormals();
+}
+
+export function setTextureVisible(visible){
+  if(!material) return;
+  material.map = visible ? texColor : null;
+  material.needsUpdate = true;
 }
 
 export function destroy(){ 
