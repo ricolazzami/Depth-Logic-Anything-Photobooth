@@ -58,12 +58,22 @@ export async function getEstimator(onProgress) {
     });
   } catch (e) {
     console.warn('WebGPU/FP16 failed, falling back to WASM/Quantized', e);
-    depthPipeline = await pipeline('depth-estimation', 'Xenova/depth-anything-small-hf', {
-      quantized: true,
-      progress_callback: d => { if (onProgress && d.status==='progress') onProgress(`Model ${Math.round(d.progress||0)}%`); }
-    });
+    try {
+      depthPipeline = await pipeline('depth-estimation', 'Xenova/depth-anything-small-hf', {
+        device: 'wasm',
+        dtype: 'q8',
+        progress_callback: d => { if (onProgress && d.status==='progress') onProgress(`Model ${Math.round(d.progress||0)}%`); }
+      });
+    } catch(e2) {
+      console.warn('WASM fallback failed, trying default quantized', e2);
+      depthPipeline = await pipeline('depth-estimation', 'Xenova/depth-anything-small-hf', {
+        quantized: true,
+        progress_callback: d => { if (onProgress && d.status==='progress') onProgress(`Model ${Math.round(d.progress||0)}%`); }
+      });
+    }
+  } finally {
+    depthLoading = false;
   }
-  depthLoading = false;
   if (onProgress) onProgress('Model ready');
   return depthPipeline;
 }
